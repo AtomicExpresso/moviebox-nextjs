@@ -48,9 +48,41 @@
   }
 }
 
-.item-movie-holder{
-  margin: 20px 30px;
+//discover page
+.discover-page{
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0px;
+
+  & hr {
+    border: solid 1px white;
+    width: 97%;
+  }
 }
+
+//movie item
+.item-movie-holder{
+  height: 350px;
+  margin: 20px 30px;
+  display: flex;
+  gap: 30px;
+  overflow-x: scroll;
+
+  &::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(128, 128, 128, 0.142);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #2c3858;
+    border-radius: 10px;
+  }
+}
+
 
 .item-movie{
   position: relative;

@@ -1,6 +1,7 @@
 export interface dataType {
   title: string
   adult: boolean;
+  id: number;
   belongs_to_collection: any; // Define this type based on the actual data structure
   budget: number;
   poster_path: string;
