@@ -5,6 +5,7 @@ export interface dataType {
   belongs_to_collection: any; // Define this type based on the actual data structure
   budget: number;
   poster_path: string;
+  backdrop_path: string;
   vote_average: number;
   genres: {
     id: number,

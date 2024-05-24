@@ -78,8 +78,13 @@ export default function Home() {
     )
   }
 
+  const RandomFeaturedBG = Math.floor(Math.random() * data.length)
+  console.log(RandomFeaturedBG)
   return (
     <div className='discover-page'>
+      <div>
+        <img src={`https://image.tmdb.org/t/p/w500/${data[2].poster_path}`}></img>
+      </div>
       <CreateMovieCat name='Popular' creation={<CreateNewItems mapTitle={data}/>}/>
       <CreateMovieCat name='New' creation={<CreateNewItems mapTitle={dataNewMovies}/>}/>
       <CreateMovieCat name='Action' creation={<CreateNewItems mapTitle={dataGenreAction}/>}/>
