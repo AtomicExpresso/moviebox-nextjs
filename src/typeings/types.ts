@@ -7,6 +7,7 @@ export interface dataType {
   poster_path: string;
   backdrop_path: string;
   vote_average: number;
+  overview: string;
   genres: {
     id: number,
     name: string
