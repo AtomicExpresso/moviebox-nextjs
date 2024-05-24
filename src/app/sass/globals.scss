@@ -42,4 +42,87 @@
 
 #root {
   background-color: #10141f;
+
+  h1 {
+    color: white;
+  }
+}
+
+.item-movie-holder{
+  margin: 20px 30px;
+}
+
+.item-movie{
+  position: relative;
+  height: 280px;
+  width: 250px;
+  transition: 0.4s;
+  cursor: pointer;
+
+  &:hover{
+    scale: 0.97;
+    filter: grayscale(0.1);
+  }
+
+  &:active{
+    filter: grayscale(0.4);
+  }
+
+  &::after{
+    box-shadow: inset 3px 1px 30px 3px #000000;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  img {
+    height: 280px;
+    width: 250px;
+    border-radius: 10px;
+  }
+
+  h1 {
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  h2 {
+    color: white;
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  h3 {
+    color: white;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 2px;
+  }
+
+  .movie-item-info{
+    margin: 0 10px;
+    position: absolute;
+    bottom: 0;
+  }
+
+  .movie-item-cat{
+    display: flex;
+    gap: 5px;
+
+    & img {
+      height: 14px;
+      width: 14px;
+      margin: 2px 0 0;
+    }
+  }
+
+  .divider{
+    height: 16px;
+    width: 2px;
+    background-color: #ff0c0c;
+    margin: 2px 0 0;
+  }
 }
