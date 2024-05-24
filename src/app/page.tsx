@@ -82,9 +82,14 @@ export default function Home() {
   console.log(RandomFeaturedBG)
   return (
     <div className='discover-page'>
-      <div>
-        <img src={`https://image.tmdb.org/t/p/w500/${data[2].poster_path}`}></img>
-      </div>
+      {data.length > 0 && (
+        <div className='featured-movie-banner'>
+          <img src={`https://image.tmdb.org/t/p/w500/${data[RandomFeaturedBG].backdrop_path}`} alt="Featured Movie Poster" />
+          <div className='featured-movie-info'>
+            <h1>{data[RandomFeaturedBG].title}</h1>
+          </div>
+        </div>
+      )}
       <CreateMovieCat name='Popular' creation={<CreateNewItems mapTitle={data}/>}/>
       <CreateMovieCat name='New' creation={<CreateNewItems mapTitle={dataNewMovies}/>}/>
       <CreateMovieCat name='Action' creation={<CreateNewItems mapTitle={dataGenreAction}/>}/>
