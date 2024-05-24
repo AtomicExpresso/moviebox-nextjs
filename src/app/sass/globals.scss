@@ -62,11 +62,11 @@
 
 //movie item
 .item-movie-holder{
-  height: 350px;
-  margin: 20px 30px;
+  height: 240px;
+  margin: 0px 30px;
   display: flex;
-  gap: 30px;
-  overflow-x: scroll;
+  gap: 10px;
+  overflow-x: hidden;
 
   &::-webkit-scrollbar {
     height: 10px;
@@ -83,11 +83,18 @@
   }
 }
 
+.item-movie-cat-title{
+  margin: 0px 20px;
+  h1 {
+    font-size: 23px;
+  }
+}
+
 
 .item-movie{
   position: relative;
-  height: 280px;
-  width: 250px;
+  height: 210px;
+  width: 180px;
   transition: 0.4s;
   cursor: pointer;
 
@@ -111,20 +118,22 @@
   }
 
   img {
-    height: 280px;
-    width: 250px;
+    height: 210px;
+    width: 180px;
     border-radius: 10px;
   }
 
   h1 {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 600;
+    text-shadow: rgb(0, 0, 0) 1px 0 10px;
   }
 
   h2 {
     color: white;
-    font-size: 15px;
+    font-size: 12px;
     font-weight: 800;
+    text-shadow: rgb(0, 0, 0) 1px 0 10px;
   }
 
   h3 {
@@ -132,6 +141,7 @@
     font-size: 12px;
     font-weight: 500;
     margin-top: 2px;
+    text-shadow: rgb(0, 0, 0) 1px 0 10px;
   }
 
   .movie-item-info{
