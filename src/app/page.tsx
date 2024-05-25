@@ -5,7 +5,9 @@ import { useEffect, useRef, useState } from 'react';
 import {dataType} from '@/typeings/types';
 import rating from '@/assets/images/Rating.svg';
 import Image from 'next/image';
-
+import Star from '@/assets/images/star-solid.svg';
+import Fighter from '@/assets/images/fighter-solid.svg';
+import Ticket from '@/assets/images/ticket-solid.svg';
 
 const fetchDataFromAPI = async (url: string, queryParams: string = '') => {
   try {
@@ -65,7 +67,7 @@ export default function Home() {
     )
   })}
 
-  const CreateMovieCat = ({name, creation}: {name: string, creation: React.ReactNode}) => {
+  const CreateMovieCat = ({name, creation, img}: {name: string, creation: React.ReactNode, img: string}) => {
     const [btnArrow, setBtnArrow] = useState(false)
 
     const scrollElement = useRef(null);
@@ -77,7 +79,10 @@ export default function Home() {
     return (
       <>
         <div className='item-movie-cat-title'>
-          <h1>{name}</h1>
+          <div className='item-movie-cat-title-row'>
+            <Image alt={name} src={img}></Image>
+            <h1>{name}</h1>
+          </div>
           <hr></hr>
         </div>
         <div className='item-movie-holder' onMouseOver={() => setBtnArrow(true)} onMouseOut={() => setBtnArrow(false)} ref={scrollElement}>
@@ -114,9 +119,9 @@ export default function Home() {
           </div>
         </div>
       )}
-      <CreateMovieCat name='Popular' creation={<CreateNewItems mapTitle={data}/>}/>
-      <CreateMovieCat name='New' creation={<CreateNewItems mapTitle={dataNewMovies}/>}/>
-      <CreateMovieCat name='Action' creation={<CreateNewItems mapTitle={dataGenreAction}/>}/>
+      <CreateMovieCat img={Star} name='Popular' creation={<CreateNewItems mapTitle={data}/>}/>
+      <CreateMovieCat img={Ticket} name='New' creation={<CreateNewItems mapTitle={dataNewMovies}/>}/>
+      <CreateMovieCat  img={Fighter} name='Action' creation={<CreateNewItems mapTitle={dataGenreAction}/>}/>
     </div>
   );
 }

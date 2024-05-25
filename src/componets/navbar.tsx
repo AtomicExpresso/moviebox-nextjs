@@ -8,9 +8,12 @@ import Film from '@/assets/images/film-solid.svg';
 import Tv from '@/assets/images/tv-solid.svg';
 import Search from '@/assets/images/search-solid.svg';
 import Gear from '@/assets/images/gear-solid.svg';
+import { useState } from "react";
 
 
 export default function NavBar(){ 
+  const [context, setContext] = useState(false);
+  const [contextText, seContextText] = useState("Home");
   const pathname  = usePathname();
 
   const activeStyle = {
@@ -23,15 +26,36 @@ export default function NavBar(){
     fontWeight: '400'
   }
 
+  function changeContext(text: string, show: boolean){
+    setContext(show)
+    seContextText(text)
+  }
+
+  function LinkCreation({Title, Path, Img, Identify}: {Title: string, Path: string, Img: string, Identify:string}){
+
+    return (
+      <div id={Identify} className="nav-list-item" style={pathname === Path ? activeStyle : defaultStyle}>
+        <Link href={Path} onMouseEnter={() => changeContext(Title, true)} onMouseLeave={() => changeContext("", false)}>
+            <Image alt={Title} src={Img}></Image>
+        </Link>
+          {contextText === Title && context ? 
+              <div className="navbar-context">
+                <h1>{contextText}</h1>
+              </div>
+            : ''}
+      </div>
+    )
+  }
+
   return (
     <div className="navbar">
       <ul>
-        <li style={pathname === '/' ? activeStyle : defaultStyle}><Link href="/"><Image alt="home" src={Home}></Image></Link></li>
-        <li style={pathname === '/discover' ? activeStyle : defaultStyle}><Link href="/discover"><Image alt="discover" src={Globe}></Image></Link></li>
-        <li style={pathname === '/movies' ? activeStyle : defaultStyle}><Link href="/movies"><Image alt="Movies" src={Film}></Image></Link></li>
-        <li style={pathname === '/shows' ? activeStyle : defaultStyle}><Link href="/shows"><Image alt="Tv shows" src={Tv}></Image></Link></li>
-        <li style={pathname === '/shows' ? activeStyle : defaultStyle}><Link href="/shows"><Image alt="Search" src={Search}></Image></Link></li>
-        <li style={pathname === '/shows' ? activeStyle : defaultStyle}><Link href="/shows"><Image alt="Gear" src={Gear}></Image></Link></li>
+        <LinkCreation Title="home" Path="/" Img={Home} Identify="nav-home"/>
+        <LinkCreation Title="discover" Path="/discover" Img={Globe} Identify="nav-globe"/>
+        <LinkCreation Title="movies" Path="/movies" Img={Film} Identify="nav-film"/>
+        <LinkCreation Title="shows" Path="/shows" Img={Tv} Identify="nav-tv"/>
+        <LinkCreation Title="search" Path="/search" Img={Search} Identify="nav-search"/>
+        <LinkCreation Title="settings" Path="/settings" Img={Gear} Identify="nav-settings"/>
       </ul>
     </div>
   )
