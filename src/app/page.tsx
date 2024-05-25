@@ -8,20 +8,8 @@ import Image from 'next/image';
 import Star from '@/assets/images/star-solid.svg';
 import Fighter from '@/assets/images/fighter-solid.svg';
 import Ticket from '@/assets/images/ticket-solid.svg';
-
-const fetchDataFromAPI = async (url: string, queryParams: string = '') => {
-  try {
-    const response = await fetch(`${url}${queryParams}`, { method: 'GET', headers: { accept: 'application/json' } });
-    if (!response.ok) {
-      throw new Error('Failed to fetch data');
-    }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
-};
+import {fetchData, fetchDataGenreaAction, fetchDataNewMovie} from '@/lib/api';
+import Link from 'next/link';
 
 export default function Home() {
   const [data, setData] = useState<dataType[]>([]);
@@ -32,13 +20,13 @@ export default function Home() {
   useEffect(() => {
     const fetchDataAsync = async () => {
       try {
-        const popularMovies = await fetchDataFromAPI('https://api.themoviedb.org/3/movie/popular', '?api_key=5864127d28cedcf6e5a23ad38b9d9816');
+        const popularMovies = await fetchData(11);
         setData(popularMovies.results);
 
-        const actionMovies = await fetchDataFromAPI('https://api.themoviedb.org/3/discover/movie', `?api_key=5864127d28cedcf6e5a23ad38b9d9816&with_genres=28`);
+        const actionMovies = await fetchDataGenreaAction(11);
         setDataGenreAction(actionMovies.results);
 
-        const newMovies = await fetchDataFromAPI('https://api.themoviedb.org/3/movie/upcoming', `?api_key=5864127d28cedcf6e5a23ad38b9d9816`);
+        const newMovies = await fetchDataNewMovie(11);
         setDataNewMovies(newMovies.results);
 
       } catch (error) {
@@ -62,7 +50,7 @@ export default function Home() {
           <h2>{item.vote_average}</h2>
           <div className='divider'></div>
         </div>
-    </div>
+      </div>
     </div>
     )
   })}
@@ -103,7 +91,6 @@ export default function Home() {
   }
 
   const RandomFeaturedBG = Math.floor(Math.random() * data.length)
-  console.log(data)
   return (
     <div className='discover-page'>
       {data.length > 0 && (
@@ -113,7 +100,7 @@ export default function Home() {
             <h1>{data[RandomFeaturedBG].title}</h1>
             <p>{data[RandomFeaturedBG].overview}</p>
             <div className='featured-movie-btn'>
-              <button className='btn btn-danger'>Watch</button>
+              <Link href={`/movie/${data[RandomFeaturedBG].id}`}><button className='btn btn-danger'>Watch</button></Link>
               <button className='btn btn-light'>Info</button>
             </div>
           </div>

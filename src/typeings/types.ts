@@ -8,6 +8,9 @@ export interface dataType {
   backdrop_path: string;
   vote_average: number;
   overview: string;
+  release_date: string;
+  runtime: number;
+  imdb_id: string;
   genres: {
     id: number,
     name: string

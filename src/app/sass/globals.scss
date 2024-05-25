@@ -232,9 +232,12 @@
     display: flex;
     gap: 10px;
 
+    a {
+      z-index: 99;
+    }
+
     button {
       width: 140px;
-      z-index: 99;
     }
   }
 }
@@ -295,6 +298,50 @@
     width: 22px;
     height: 22px;
     filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(88deg) brightness(103%) contrast(107%);
+  }
+}
+
+//Movie page
+.movie-page{
+  display: flex;
+  margin: 20px;
+  gap: 10px;
+
+  & .movie-page-poster{
+    img {
+      width: 200px;
+      height: 250px;
+      border-radius: 10px;
+    }
+  }
+
+  & .movie-page-info{
+    display: flex;
+    gap: 5px;
+  
+    h2 {
+      font-size: 14px;
+    }
+
+    img {
+      width: 12px;
+      height: 12px;
+      filter: brightness(0) saturate(100%) invert(84%) sepia(30%) saturate(1464%) hue-rotate(360deg) brightness(106%) contrast(104%);
+      margin: 2px 0;
+    }
+  }
+
+  p {
+    max-width: 700px;
+  }
+
+  & .movie-page-btn {
+    display: flex;
+    gap: 10px;
+
+    button {
+      width: 150px;
+    }
   }
 }
 
