@@ -16,3 +16,22 @@ export interface dataType {
     name: string
   }[];
 }
+
+export interface castType {
+  title: string;
+  id: number;
+  overview: string;
+  origin_country: string;
+  genres: {
+    id: number,
+    name: string
+  }[];
+  credits: {
+    crew: {
+      name: string;
+      job: string;
+      profile_path: string;
+      id: number;
+    }
+  }
+}

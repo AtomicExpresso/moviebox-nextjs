@@ -305,7 +305,7 @@
 .movie-page{
   display: flex;
   margin: 20px;
-  gap: 10px;
+  gap: 5%;
 
   & .movie-page-poster{
     img {
@@ -342,6 +342,84 @@
     button {
       width: 150px;
     }
+  }
+}
+
+//Movie tabs
+.movie-page-tabs{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .movie-page-info-overview-container{
+    background-color: #000000;
+    border-radius: 10px;
+    padding: 20px 40px;
+    color: white;
+
+    p {
+      max-width: 500px;
+    }
+
+    .movie-page-similar {
+      margin: 50px 0;
+    }
+  }
+
+  .movie-page-info-card-container{
+    display: flex;
+    gap: 10px;
+  }
+
+  .movie-page-info-card{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+
+    .movie-page-info-card-nested-container{
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+
+      .movie-page-info-card-nested{
+        background-color: #333333;
+        padding: 3px;
+        border-radius: 10px;
+
+        h3 {
+          font-size: 13px;
+        }
+      }
+    }
+
+    h1{
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    h2{
+      font-size: 17px;
+      font-weight: 400;
+    }
+  }
+
+  ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    width: 500px;
+  }
+
+  button {
+    background: none;
+    border: none;
+  }
+
+  h1 {
+    font-size: 24px;
   }
 }
 

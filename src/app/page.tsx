@@ -41,25 +41,28 @@ export default function Home() {
   const CreateNewItems = ({mapTitle}: {mapTitle: dataType[]}) => {
     return mapTitle.map((item) => {
     return (
-      <div className='item-movie' key={item.id}>
-        <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}></img>
-        <div className='movie-item-info'>
-        <h1>{item.title}</h1>
-        <div className='movie-item-cat'>
-          <Image draggable='false' src={rating} alt='rating'></Image>
-          <h2>{item.vote_average}</h2>
-          <div className='divider'></div>
+      <Link href={`/movie/${item.id}`}>
+        <div className='item-movie' key={item.id}>
+          <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}></img>
+          <div className='movie-item-info'>
+          <h1>{item.title}</h1>
+          <div className='movie-item-cat'>
+            <Image draggable='false' src={rating} alt='rating'></Image>
+            <h2>{item.vote_average}</h2>
+            <div className='divider'></div>
+          </div>
         </div>
-      </div>
-    </div>
+        </div>
+    </Link>
     )
   })}
 
+  //Renders each movie category for the home page
   const CreateMovieCat = ({name, creation, img}: {name: string, creation: React.ReactNode, img: string}) => {
+
+    //For scroll arrows
     const [btnArrow, setBtnArrow] = useState(false)
-
     const scrollElement = useRef(null);
-
     const scrollArrow = (direct: string) => {
       direct === "right" ? scrollElement.current.scrollLeft += 300 : scrollElement.current.scrollLeft += -300
     }
