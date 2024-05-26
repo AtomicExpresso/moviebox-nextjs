@@ -86,13 +86,15 @@
 
 //movie item
 .item-movie-holder{
+  position: relative;
   height: 240px;
   margin: 0px 30px;
   display: flex;
   gap: 10px;
   scroll-behavior: smooth;
   user-select: none;
-  max-width: 200px;
+  max-width: 90vw;
+  overflow: hidden;
 
   &::-webkit-scrollbar {
     height: 10px;
@@ -245,8 +247,8 @@
 .item-movie-btn-arrow{
   position: absolute;
   display: flex;
-  right: 3%;
-  bottom: 0%;
+  right: 8%;
+  top: 15%;
   background-color: rgba(30, 29, 29, 0.84);
   height: 100px;
   width: 50px;
@@ -270,7 +272,7 @@
   position: absolute;
   display: flex;
   left: 3%;
-  bottom: 0%;
+  top: 15%;
   background-color: rgba(30, 29, 29, 0.84);
   height: 100px;
   width: 50px;
@@ -302,10 +304,13 @@
 }
 
 //Movie page
+.movie-page-container{
+  margin: auto;
+}
 .movie-page{
   display: flex;
   margin: 20px;
-  gap: 5%;
+  gap: 1%;
 
   & .movie-page-poster{
     img {
@@ -345,12 +350,40 @@
   }
 }
 
+//===========
 //Movie tabs
+//===========
+
+//Shows similar movies
+.movie-page-similar {
+  margin: 50px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  .movie-page-similar-imgs{
+    img {
+      border-radius: 10px;
+      height:210px;
+      width: 180px;
+    }
+  }
+
+  .move-page-similar-img-container{
+    display: flex;
+    gap: 9px;
+    overflow: hidden;
+    scroll-behavior: smooth;
+    width: 80vw;
+  }
+}
+
 .movie-page-tabs{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 30%;
 
   .movie-page-info-overview-container{
     background-color: #000000;
@@ -360,10 +393,6 @@
 
     p {
       max-width: 500px;
-    }
-
-    .movie-page-similar {
-      margin: 50px 0;
     }
   }
 

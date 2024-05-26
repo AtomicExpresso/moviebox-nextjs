@@ -1,6 +1,6 @@
 'use client'
 import ArrowRight from '@/assets/images/right-solid.svg';
-import ArrowLeft from '@/assets/images/left-solid.svg'
+import ArrowLeft from '@/assets/images/left-solid.svg';
 import { useEffect, useRef, useState } from 'react';
 import {dataType} from '@/typeings/types';
 import rating from '@/assets/images/Rating.svg';
@@ -12,6 +12,7 @@ import {fetchData, fetchDataGenreaAction, fetchDataNewMovie} from '@/lib/api';
 import Link from 'next/link';
 
 export default function Home() {
+  //Holds json data from the api
   const [data, setData] = useState<dataType[]>([]);
   const [dataGenreAction, setDataGenreAction] = useState<dataType[]>([]);
   const [dataNewMovies, setDataNewMovies] = useState<dataType[]>([]);
@@ -76,9 +77,11 @@ export default function Home() {
           </div>
           <hr></hr>
         </div>
-        <div className='item-movie-holder' onMouseOver={() => setBtnArrow(true)} onMouseOut={() => setBtnArrow(false)} ref={scrollElement}>
+        <div className='item-movie-holder-content' style={{position: 'relative'}} onMouseOver={() => setBtnArrow(true)} onMouseOut={() => setBtnArrow(false)}>
+        <div className='item-movie-holder' ref={scrollElement}>
           {creation}
-          {btnArrow && 
+        </div>
+        {btnArrow && 
             <>
             <div className="item-movie-btn-arrow" onClick={() => scrollArrow("right")}>
               <Image draggable='false' src={ArrowRight} alt='scroll right'></Image>
@@ -88,12 +91,15 @@ export default function Home() {
             </div>
             </>
           }
-        </div>
+         </div>
       </>
     )
   }
 
+  //Genrates a random number from 0 to the length of the data state array. This is used
+  //to display a random featured image
   const RandomFeaturedBG = Math.floor(Math.random() * data.length)
+  
   return (
     <div className='discover-page'>
       {data.length > 0 && (

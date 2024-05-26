@@ -11,6 +11,7 @@ export interface dataType {
   release_date: string;
   runtime: number;
   imdb_id: string;
+  map: React.FC;
   genres: {
     id: number,
     name: string
