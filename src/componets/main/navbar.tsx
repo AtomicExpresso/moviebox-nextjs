@@ -51,7 +51,7 @@ export default function NavBar(){
     <div className="navbar">
       <ul>
         <LinkCreation Title="home" Path="/" Img={Home} Identify="nav-home"/>
-        <LinkCreation Title="discover" Path="/discover" Img={Globe} Identify="nav-globe"/>
+        <LinkCreation Title="discover" Path="/discover/movies/1" Img={Globe} Identify="nav-globe"/>
         <LinkCreation Title="movies" Path="/movies" Img={Film} Identify="nav-film"/>
         <LinkCreation Title="shows" Path="/shows" Img={Tv} Identify="nav-tv"/>
         <LinkCreation Title="search" Path="/search" Img={Search} Identify="nav-search"/>

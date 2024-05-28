@@ -1,6 +1,11 @@
 'use client'
-import { useState } from "react"
+import { useState, useRef } from "react";
 import {castType} from '@/typeings/types';
+import Image from 'next/image';
+
+import ArrowRight from '@/assets/images/right-solid.svg';
+import ArrowLeft from '@/assets/images/left-solid.svg';
+import DefaultImg from '@/assets/images/default.jpg'
 
 interface Props {
   castData: castType[];
@@ -20,6 +25,15 @@ const Tabs: React.FC<Props> = ({castData}) => {
       color: 'white',
       fontWeight: '400'
     }
+
+    const [btnArrow, setBtnArrow] = useState(false);
+
+    const scrollElement = useRef(null);
+  
+    const scrollArrow = (direct: string) => {
+      direct === "right" ? scrollElement.current.scrollLeft += 300 : scrollElement.current.scrollLeft += -300
+    }
+  
   
   return (
     <div className="movie-page-tabs">
@@ -34,9 +48,9 @@ const Tabs: React.FC<Props> = ({castData}) => {
                   <h1>Cast</h1>
                 </button>
               </div>
-              <div style={curTab === 'Similar' ? ActiveStyle : DefaultStyle}>
-                <button onClick={() => setCurTab('Similar')}>
-                  <h1>Similar</h1>
+              <div style={curTab === 'Ratings' ? ActiveStyle : DefaultStyle}>
+                <button onClick={() => setCurTab('Ratings')}>
+                  <h1>Ratings</h1>
                 </button>
               </div>
             </ul>
@@ -67,6 +81,34 @@ const Tabs: React.FC<Props> = ({castData}) => {
                 </div>
               </div>
             </div> 
+            : ''}
+            {castData.length > 0 && curTab === 'Cast' ?
+              <div className="movie-page-info-overview-container">
+                <h1>Cast</h1>
+                <div style={{position: 'relative'}} onMouseOver={() => setBtnArrow(true)} onMouseOut={() => setBtnArrow(false)}>
+                <div className="cast-container" ref={scrollElement}>
+                  {castData[0].credits.crew.map((item: any, index: number) => {
+                      return (
+                        <div className="cast-item-container" key={index}>
+                          <img draggable='false' src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}></img>
+                          <h1>{item.name}</h1>
+                          <h2>{item.character}</h2>
+                        </div>
+                      )
+                    })}
+                  </div>
+                  {btnArrow && 
+                    <>
+                      <div className="item-movie-btn-arrow" onClick={() => scrollArrow("right")}>
+                        <Image draggable='false' src={ArrowRight} alt='scroll right'></Image>
+                      </div>
+                      <div className="item-movie-btn-arrow-right" onClick={() => scrollArrow("left")}>
+                        <Image draggable='false' src={ArrowLeft} alt='scroll left'></Image>
+                      </div>
+                    </>
+                  }
+                  </div>
+              </div>
             : ''}
           </div>
   )

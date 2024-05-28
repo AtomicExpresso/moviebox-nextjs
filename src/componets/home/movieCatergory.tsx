@@ -4,8 +4,6 @@ import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import {fetchData, fetchDataGenrea, fetchDataNewMovie} from '@/lib/api';
 import {dataType} from '@/typeings/types';
-import GenereButtons from "./genreButtons";
-
 import ArrowRight from '@/assets/images/right-solid.svg';
 import ArrowLeft from '@/assets/images/left-solid.svg';
 import rating from '@/assets/images/Rating.svg';
@@ -112,9 +110,6 @@ export default function MovieCategory() {
     <div>
       <div>
         <FeaturedImage data={data}/>
-      </div>
-      <div>
-        <GenereButtons/>
       </div>
       <div>
         <CreateMovieCat img={Star} name='Popular' creation={<CreateNewItems mapTitle={data}/>}/>

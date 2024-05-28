@@ -112,6 +112,10 @@
   }
 }
 
+.item-movie-holder-content{
+  width: 90vw;
+}
+
 //movie item
 .item-movie-holder{
   position: relative;
@@ -275,7 +279,7 @@
 .item-movie-btn-arrow{
   position: absolute;
   display: flex;
-  right: 8%;
+  right: 3%;
   top: 15%;
   background-color: rgba(30, 29, 29, 0.84);
   height: 100px;
@@ -384,10 +388,11 @@
 
 //Shows similar movies
 .movie-page-similar {
-  margin: 50px 0;
+  margin: 50px 5%;
   display: flex;
   flex-direction: column;
   gap: 5px;
+  width: 80vw;
 
   .movie-page-similar-imgs{
     img {

@@ -47,6 +47,8 @@ export default function MovieComp(){
     fetchDataAsync();
   }, []);
 
+  console.log(castData)
+
   return (
     <div className="movie-page-container">
       {data.length > 0 ? 

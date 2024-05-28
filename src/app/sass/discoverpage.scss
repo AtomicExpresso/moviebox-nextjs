@@ -1,0 +1,66 @@
+.discover-page-title{
+  margin: 1% 7%;
+  display: flex;
+  justify-content: space-between;
+
+  input {
+    height: 40px;
+    width: 30%;
+    background-color: rgb(12, 12, 12);
+    color: white;
+
+    &:focus{
+      background-color: rgb(12, 12, 12);
+      color: white;
+      box-shadow: 0 0 10px #719ECE;
+    }
+
+    &::placeholder {
+      color: white;
+    }
+  }
+}
+
+.discover-page-img-container{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    width: 190px;
+    height: 250px;
+    border-radius: 10px;
+
+    transition: 0.4s;
+    cursor: pointer;
+  
+    &:hover{
+      scale: 0.97;
+      filter: grayscale(0.1);
+    }
+  
+    &:active{
+      filter: grayscale(0.4);
+    }
+  
+    &::after{
+      box-shadow: inset 3px 1px 30px 3px #000000;
+      content: '';
+      display: block;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+  }
+}
+
+.genra-btn-container{
+  margin: 30px 0 50px;
+}
+
+.discover-page-bottom{
+  margin: 50px 90px auto auto;
+}

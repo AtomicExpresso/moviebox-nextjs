@@ -34,6 +34,12 @@ export interface castType {
       job: string;
       profile_path: string;
       id: number;
-    }
+    };
+    cast: {
+      name: string;
+      character: string;
+      profile_path: string;
+      cast_id: number;
+      }
+    };
   }
-}

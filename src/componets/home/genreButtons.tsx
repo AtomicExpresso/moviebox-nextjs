@@ -20,9 +20,9 @@ export default function GenereButtons(){
 
   return (
     <div className='genre-btn-container'>
-      {ParseJson.movies.genres.map((item: any) => {
+      {ParseJson.movies.genres.map((item: any, index) => {
           return(
-            <div className='genre-btn'>
+            <div className='genre-btn' key={index}>
               <h1>{item.name}</h1>
             </div>
           )
