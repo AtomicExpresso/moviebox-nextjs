@@ -12,6 +12,7 @@ export interface dataType {
   runtime: number;
   imdb_id: string;
   map: React.FC;
+  origin_country: string[];
   genres: {
     id: number,
     name: string

@@ -65,6 +65,34 @@
   }
 }
 
+//Genrea btn
+
+.genre-btn-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  gap: 10px;
+  width: 50%;
+
+  & .genre-btn{
+    background-color: #242424;
+    padding: 5px;
+    border-radius: 10px;
+    transition: 0.2s;
+    cursor: pointer;
+
+    &:hover{
+      scale: 0.95;
+    }
+
+    h1 {
+      font-size: 16px;
+      margin: auto;
+    }
+  }
+}
+
 //discover page
 .discover-page{
   display: flex;
@@ -383,7 +411,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 30%;
+  width: 100%;
 
   .movie-page-info-overview-container{
     background-color: #000000;
@@ -449,6 +477,45 @@
 
   h1 {
     font-size: 24px;
+  }
+}
+
+.footer{
+  display: flex;
+  gap: 50px;
+  width: 100%;
+  padding: 10px;
+  background-color: #000000;
+
+  p {
+    color: white;
+  }
+
+  span {
+    color: #dc3546;
+  }
+
+  & .footer-links-container{
+    display: flex;
+    flex-direction: column;
+
+    a {
+      font-size: 16px;
+      color: rgb(222, 222, 222);
+      text-decoration: none;
+      transition: 0.1s;
+
+      &:hover {
+        color: #dc3546;
+      }
+    }
+  }
+
+  & .footer-list-container{
+    display: flex;
+    gap: 60px;
+    justify-content: space-between;
+    margin: 30px 30px 10px;
   }
 }
 

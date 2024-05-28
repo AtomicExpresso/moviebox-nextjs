@@ -15,8 +15,8 @@ const fetchData = (id: number) => {
     });
 };
 
-const fetchDataGenreaAction = (id: number) => {
-  return fetch(`https://api.themoviedb.org/3/discover/movie?api_key=5864127d28cedcf6e5a23ad38b9d9816&with_genres=28`, options)
+const fetchDataGenrea = (id: number) => {
+  return fetch(`https://api.themoviedb.org/3/discover/movie?api_key=5864127d28cedcf6e5a23ad38b9d9816&with_genres=${id}`, options)
     .then(response => response.json())
     .then(data => {
       console.log(data);
@@ -80,4 +80,4 @@ const getSimilarFilm = (id: number) => {
   });
 }
 
-export {fetchData, fetchDataGenreaAction, fetchDataNewMovie, searchMovie, getCast, getSimilarFilm};
+export {fetchData, fetchDataGenrea, fetchDataNewMovie, searchMovie, getCast, getSimilarFilm};
