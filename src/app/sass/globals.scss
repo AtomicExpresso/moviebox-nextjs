@@ -387,20 +387,20 @@
 //===========
 
 //Shows similar movies
+.movie-page-similar-imgs{
+  img {
+    border-radius: 10px;
+    height:210px;
+    width: 180px;
+  }
+}
+
 .movie-page-similar {
   margin: 50px 5%;
   display: flex;
   flex-direction: column;
   gap: 5px;
   width: 80vw;
-
-  .movie-page-similar-imgs{
-    img {
-      border-radius: 10px;
-      height:210px;
-      width: 180px;
-    }
-  }
 
   .move-page-similar-img-container{
     display: flex;
@@ -411,6 +411,38 @@
   }
 }
 
+.movie-page-info-overview-container{
+  background-color: #000000;
+  border-radius: 10px;
+  padding: 20px 40px;
+  color: white;
+
+  p {
+    max-width: 500px;
+  }
+}
+
+.movie-page-info-card-container{
+  display: flex;
+  gap: 10px;
+}
+
+.movie-page-info-card-nested-container{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+
+  .movie-page-info-card-nested{
+    background-color: #333333;
+    padding: 3px;
+    border-radius: 10px;
+
+    h3 {
+      font-size: 13px;
+    }
+  }
+}
+
 .movie-page-tabs{
   display: flex;
   flex-direction: column;
@@ -418,44 +450,12 @@
   align-items: center;
   width: 100%;
 
-  .movie-page-info-overview-container{
-    background-color: #000000;
-    border-radius: 10px;
-    padding: 20px 40px;
-    color: white;
-
-    p {
-      max-width: 500px;
-    }
-  }
-
-  .movie-page-info-card-container{
-    display: flex;
-    gap: 10px;
-  }
-
   .movie-page-info-card{
     display: flex;
     flex-direction: column;
     color: white;
     padding: 10px;
     border-radius: 10px;
-
-    .movie-page-info-card-nested-container{
-      display: flex;
-      flex-wrap: wrap;
-      gap: 3px;
-
-      .movie-page-info-card-nested{
-        background-color: #333333;
-        padding: 3px;
-        border-radius: 10px;
-
-        h3 {
-          font-size: 13px;
-        }
-      }
-    }
 
     h1{
       font-size: 18px;
@@ -590,5 +590,170 @@
     gap: 10px;
     margin-bottom: auto;
     padding: 0 10px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .footer {
+    flex-direction: column;
+    gap: 10px;
+    height: 100px;
+    align-items: center;
+    width: 90vw;
+
+    p {
+      font-size: 12px;
+      text-align: center;
+    }
+  }
+
+  .footer-list-container {
+    display: none;
+  }
+
+  .footer-links-container{
+    display: none;
+
+    a {
+      display: none;
+    }
+  }
+
+  .item-movie {
+    width: 120px;
+    height: 180px;
+
+    img {
+      width: 120px;
+      height: 180px;
+    }
+  }
+
+  .item-movie-btn-arrow{
+    height: 70px;
+    width: 45px;
+    right: 8%;
+  }
+
+  .item-movie-btn-arrow-right{
+    height: 70px;
+    width: 45px;
+    left: 8%;
+  }
+
+  .movie-page{
+    flex-wrap: wrap;
+    width: 95vw;
+    gap: 10px;
+
+    & .movie-page-btn{
+      button {
+        width: 100px;
+      }
+    }
+
+    p {
+      font-size: 13px;
+    }
+
+    h2 {
+      font-size: 12px;
+    }
+
+    h1 {
+      font-size: 20px;
+    }
+
+    .movie-page-poster{
+      margin: auto;
+      img {
+        width: 150px;
+        height: 170px;
+      }
+    }
+  }
+
+  .movie-page-similar-imgs{
+    height: 120px;
+    width: 110px;
+
+    img {
+      height: 120px;
+      width: 110px;
+    }
+  }
+
+  .movie-page-info-overview-container{
+    width: 95vw;
+    h1 {
+      font-size: 18px;
+    }
+
+    p {
+      max-width: 500px;
+      font-size: 13px;
+    }
+  }
+
+  .movie-page-tabs{
+    display: none;
+  }
+
+  //Discover page
+
+  .discover-page-title{
+    h1 {
+      font-size: 29px !important;
+    }
+
+    h3 {
+      font-size: 20px !important;
+    }
+
+    input {
+      width: 200px !important;
+    }
+  }
+
+  .discover-page-img-container{
+    gap: 10px !important;
+    img {
+      height: 120px !important;
+      width: 110px !important;
+    }
+  }
+
+  .discover-page-bottom{
+    margin: 10px 90px auto auto !important;
+    align-content: center !important;
+
+    button {
+      width: 100px !important;
+    }
+  }
+
+  .featured-movie-banner{
+    height: 300px;
+
+    img {
+      height: 300px;
+    }
+    
+    p {
+      display: none;
+    }
+  }
+
+  .item-movie-cat-title{
+    margin: 10px 2px;
+
+    h1 {
+      font-size: 23px;
+      margin: auto 0;
+    }
+  }
+
+  .item-movie-holder{
+    height: 180px;
   }
 }
