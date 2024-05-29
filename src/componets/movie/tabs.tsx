@@ -61,7 +61,7 @@ const Tabs: React.FC<Props> = ({castData}) => {
               <div className="movie-page-info-card-container">
                 <div className="movie-page-info-card">
                   <h1>Director</h1>
-                  <h2>{castData[0].credits.crew[0].name}</h2>
+                  <h2>{castData[0].credits.crew[0] ? castData[0].credits.crew[0].name : 'N/A'}</h2>
                 </div>
                 <div className="movie-page-info-card">
                   <h1>Country</h1>

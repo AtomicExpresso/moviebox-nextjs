@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function DiscoverComp({HandlePageNumber, HandlePrevPageNumber, slicePath}: {HandlePageNumber: Function, HandlePrevPageNumber: Function, slicePath: string}){
   const [data, setData] = useState<dataType[]>([]);
   const [searchData, setSearchData] = useState<dataType[]>([]);
-  const [search, setSearch] = useState({name: 'search', query: ''});
+  const [search, setSearch] = useState({query: ''});
 
   function HandleChange(event: any){
     let value = event.target.value;
@@ -78,7 +78,7 @@ export default function DiscoverComp({HandlePageNumber, HandlePrevPageNumber, sl
                 <Link href={`/movie/${item.id}`}>
                   <img draggable='false' src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}></img>
                 </Link>
-              </div> : ''}
+              </div> : null}
             </>
           )})}
       </div>

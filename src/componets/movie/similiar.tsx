@@ -21,13 +21,14 @@ const Similar: React.FC<Props> = ({similarData}) => {
     direct === "right" ? scrollElement.current!.scrollLeft += 300 : scrollElement.current!.scrollLeft += -300
   }
 
+  console.log(similarData)
 
   return (
     <div className="movie-page-similar">
     <h1>Similar</h1>
     <div style={{position: 'relative'}} onMouseOver={() => setBtnArrow(true)} onMouseOut={() => setBtnArrow(false)}>
      <div className="move-page-similar-img-container" ref={scrollElement}>
-       {similarData[0].map((item: any) => {
+       {similarData[0].length > 0 ? similarData[0].map((item: any) => {
          return (
           <>
            {item.poster_path ? <div key={item.id} className="movie-page-similar-imgs">
@@ -38,9 +39,9 @@ const Similar: React.FC<Props> = ({similarData}) => {
            </>
          )
         })
-      }
+      : <h1>N/A</h1>}
      </div>
-     {btnArrow && 
+     {similarData[0].length > 0 && btnArrow ? 
            <>
            <div className="item-movie-btn-arrow" onClick={() => scrollArrow("right")}>
              <Image draggable='false' src={ArrowRight} alt='scroll right'></Image>
@@ -49,7 +50,7 @@ const Similar: React.FC<Props> = ({similarData}) => {
              <Image draggable='false' src={ArrowLeft} alt='scroll left'></Image>
            </div>
            </>
-     }
+     : null}
      </div>
  </div>
   )

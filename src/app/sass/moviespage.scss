@@ -1,0 +1,39 @@
+.image-catergoy-container{
+  display: flex;
+  justify-content: center;
+  gap: 4%;
+  width: 70%;
+  margin: auto;
+}
+
+.image-catergoy-item{
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    scale: 0.97;
+
+    img {
+      filter: blur(0px);
+    }
+  }
+
+  img {
+    border-radius: 20px;
+    width: 250px;
+    height: 155px;
+    border: solid 2px rgba(255, 255, 255, 0.089);
+    filter: blur(1.5px);
+    border: solid 2px rgba(255, 255, 255, 0.244);
+    transition: 0.3s;
+  }
+
+  h1 {
+    position: absolute;
+    bottom: 1%;
+    left: 2%;
+    font-size: 30px;
+    text-shadow: 1px 1px 2px black;
+  }
+}

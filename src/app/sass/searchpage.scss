@@ -1,0 +1,40 @@
+.search-page-title{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 40px auto 0;
+  width: 65vw;
+  gap: 15px;
+
+  h1 {
+    font-size: 40px;
+  }
+
+  span {
+    color: #dc3546;
+  }
+
+  input {
+    width: 100%;
+    background-color: rgb(12, 12, 12);
+    color: white;
+
+    &:focus{
+      background-color: rgb(12, 12, 12);
+      color: white;
+      box-shadow: 0 0 10px #719ECE;
+    }
+
+    &::placeholder {
+      color: white;
+    }
+  }
+}
+
+.search-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+}
