@@ -1,4 +1,5 @@
 'use client'
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
 
@@ -7,7 +8,6 @@ import '../../../sass/discoverpage.scss';
 
 export default function Page() {
   const router = useRouter();
-  
   const pathname = usePathname();
   let slicepath = pathname.split("/")[3]
 

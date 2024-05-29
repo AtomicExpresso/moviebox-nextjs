@@ -11,8 +11,9 @@ const FeaturedImage: React.FC<Props> = ({data}) => {
   const RandomFeaturedBG = Math.floor(Math.random() * data.length)
   return (
     <div className='discover-page'>
-      {data.length > 0 && (
-        <div className='featured-movie-banner'>
+      {data.length > 0 ? (
+        <>
+        {data[RandomFeaturedBG].backdrop_path ? <div className='featured-movie-banner'>
           <img src={`https://image.tmdb.org/t/p/w500/${data[RandomFeaturedBG].backdrop_path}`} alt="Featured Movie Poster" />
           <div className='featured-movie-info'>
             <h1>{data[RandomFeaturedBG].title}</h1>
@@ -22,8 +23,9 @@ const FeaturedImage: React.FC<Props> = ({data}) => {
               <button className='btn btn-light'>Info</button>
             </div>
           </div>
-        </div>
-      )}
+        </div> : null}
+        </>
+      ) : null }
     </div>
   )
 }

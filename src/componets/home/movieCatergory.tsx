@@ -12,39 +12,66 @@ import Fighter from '@/assets/images/fighter-solid.svg';
 import Comedy from '@/assets/images/comedy-solid.svg';
 import Family from '@/assets/images/family-solid.svg';
 import Ticket from '@/assets/images/ticket-solid.svg';
+import Horror from '@/assets/images/ghost-solid.svg';
+import Scifi from '@/assets/images/rocket-solid.svg';
+import History from '@/assets/images/book-solid.svg';
 import FeaturedImage from "./featuredImage";
 
 export default function MovieCategory() {
   const [data, setData] = useState<dataType[]>([]);
-  const [dataGenreAction, setDataGenreAction] = useState<dataType[]>([]);
-  const [dataGenreComedy, setDataGenreComedy] = useState<dataType[]>([]);
-  const [dataGenreFamily, setDataGenreFamily] = useState<dataType[]>([]);
+  const [movieGenreData, setMovieGenreDate] = useState({
+    actionMovies: [],
+    comedyMovies: [],
+    horrorMovies: [],
+    scifiMovies: [],
+    familyMovies: [],
+    historyMovies: []
+  })
   const [dataNewMovies, setDataNewMovies] = useState<dataType[]>([]);
 
 
   useEffect(() => {
     const fetchDataAsync = async () => {
       try {
-        const popularMovies = await fetchData(11);
+        const [
+          popularMovies,
+          actionMovies,
+          comedyMovies,
+          horrorMovies,
+          scifiMovies,
+          familyMovies,
+          historyMovies,
+          newMovies
+        ] = await Promise.all([
+          fetchData(11),
+          fetchDataGenrea(28),
+          fetchDataGenrea(35),
+          fetchDataGenrea(27),
+          fetchDataGenrea(878),
+          fetchDataGenrea(10751),
+          fetchDataGenrea(36),
+          fetchDataNewMovie(11)
+        ]);
+  
         setData(popularMovies.results);
-
-        const actionMovies = await fetchDataGenrea(28);
-        setDataGenreAction(actionMovies.results);
-
-        const comedyMovies = await fetchDataGenrea(35);
-        setDataGenreComedy(comedyMovies.results);
-
-        const familyMovies = await fetchDataGenrea(10751);
-        setDataGenreFamily(familyMovies.results);
-
-        const newMovies = await fetchDataNewMovie(11);
+  
+        setMovieGenreDate(prevState => ({
+          ...prevState,
+          actionMovies: actionMovies.results,
+          comedyMovies: comedyMovies.results,
+          horrorMovies: horrorMovies.results,
+          scifiMovies: scifiMovies.results,
+          familyMovies: familyMovies.results,
+          historyMovies: historyMovies.results
+        }));
+  
         setDataNewMovies(newMovies.results);
-
+  
       } catch (error) {
         console.error(error);
       }
     };
-
+  
     fetchDataAsync();
   }, []);
   
@@ -52,8 +79,9 @@ export default function MovieCategory() {
   const CreateNewItems = ({mapTitle}: {mapTitle: dataType[]}) => {
     return mapTitle.map((item) => {
     return (
-      <Link href={`/movie/${item.id}`}>
-        <div className='item-movie' key={item.id}>
+      <>
+      {item.poster_path ? <Link href={`/movie/${item.id}`} key={item.id}>
+        <div className='item-movie'>
           <img draggable='false' src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}></img>
           <div className='movie-item-info'>
           <h1>{item.title}</h1>
@@ -64,7 +92,8 @@ export default function MovieCategory() {
           </div>
         </div>
         </div>
-    </Link>
+    </Link> : null}
+    </>
     )
   })}
 
@@ -81,7 +110,7 @@ export default function MovieCategory() {
 
     return (
       <>
-        <div className='item-movie-cat-title'>
+        <div className='item-movie-cat-title' key={name}>
           <div className='item-movie-cat-title-row'>
             <Image alt={name} src={img} draggable='false'></Image>
             <h1>{name}</h1>
@@ -115,9 +144,12 @@ export default function MovieCategory() {
       <div>
         <CreateMovieCat img={Star} name='Popular' creation={<CreateNewItems mapTitle={data}/>}/>
         <CreateMovieCat img={Ticket} name='New' creation={<CreateNewItems mapTitle={dataNewMovies}/>}/>
-        <CreateMovieCat  img={Fighter} name='Action' creation={<CreateNewItems mapTitle={dataGenreAction}/>}/>
-        <CreateMovieCat  img={Comedy} name='Comedy' creation={<CreateNewItems mapTitle={dataGenreComedy}/>}/>
-        <CreateMovieCat  img={Family} name='Family' creation={<CreateNewItems mapTitle={dataGenreFamily}/>}/>
+        <CreateMovieCat  img={Fighter} name='Action' creation={<CreateNewItems mapTitle={movieGenreData.actionMovies}/>}/>
+        <CreateMovieCat  img={Comedy} name='Comedy' creation={<CreateNewItems mapTitle={movieGenreData.comedyMovies}/>}/>
+        <CreateMovieCat  img={Horror} name='Horror' creation={<CreateNewItems mapTitle={movieGenreData.horrorMovies}/>}/>
+        <CreateMovieCat  img={Scifi} name='Sci-fi' creation={<CreateNewItems mapTitle={movieGenreData.scifiMovies}/>}/>
+        <CreateMovieCat  img={Family} name='Family' creation={<CreateNewItems mapTitle={movieGenreData.familyMovies}/>}/>
+        <CreateMovieCat  img={History} name='History' creation={<CreateNewItems mapTitle={movieGenreData.historyMovies}/>}/>
       </div>
     </div>
   )

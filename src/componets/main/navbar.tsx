@@ -8,12 +8,8 @@ import Film from '@/assets/images/film-solid.svg';
 import Tv from '@/assets/images/tv-solid.svg';
 import Search from '@/assets/images/search-solid.svg';
 import Gear from '@/assets/images/gear-solid.svg';
-import { useState } from "react";
-
 
 export default function NavBar(){ 
-  const [context, setContext] = useState(false);
-  const [contextText, seContextText] = useState("Home");
   const pathname  = usePathname();
 
   const activeStyle = {
@@ -26,23 +22,13 @@ export default function NavBar(){
     fontWeight: '400'
   }
 
-  function changeContext(text: string, show: boolean){
-    setContext(show)
-    seContextText(text)
-  }
-
   function LinkCreation({Title, Path, Img, Identify}: {Title: string, Path: string, Img: string, Identify:string}){
 
     return (
       <div id={Identify} className="nav-list-item" style={pathname === Path ? activeStyle : defaultStyle}>
-        <Link href={Path} onMouseEnter={() => changeContext(Title, true)} onMouseLeave={() => changeContext("", false)}>
+        <Link href={Path}>
             <Image alt={Title} src={Img}></Image>
         </Link>
-          {contextText === Title && context ? 
-              <div className="navbar-context">
-                <h1>{contextText}</h1>
-              </div>
-            : ''}
       </div>
     )
   }

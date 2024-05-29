@@ -34,6 +34,7 @@ const Tabs: React.FC<Props> = ({castData}) => {
       direct === "right" ? scrollElement.current!.scrollLeft += 300 : scrollElement.current!.scrollLeft += -300
     }
   
+    console.log(castData)
   return (
     <div className="movie-page-tabs">
             <ul>
@@ -86,15 +87,14 @@ const Tabs: React.FC<Props> = ({castData}) => {
                 <h1>Cast</h1>
                 <div style={{position: 'relative'}} onMouseOver={() => setBtnArrow(true)} onMouseOut={() => setBtnArrow(false)}>
                 <div className="cast-container" ref={scrollElement}>
-                  {castData[0].credits.crew.map((item: any, index: number) => {
-                      return (
+                  {castData[0].credits.cast.map((item: any, index: number) => {
                         <div className="cast-item-container" key={index}>
                           <img draggable='false' src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}></img>
                           <h1>{item.name}</h1>
                           <h2>{item.character}</h2>
                         </div>
-                      )
-                    })}
+                      })
+                    }
                   </div>
                   {btnArrow && 
                     <>
