@@ -80,4 +80,17 @@ const getSimilarFilm = (id: number) => {
   });
 }
 
-export {fetchData, fetchDataGenrea, fetchDataNewMovie, searchMovie, getCast, getSimilarFilm};
+const searchByPage = (id: number) => {
+  return fetch(`https://api.themoviedb.org/3/discover/movie?api_key=5864127d28cedcf6e5a23ad38b9d9816&page=${id}`, options)
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    return data; // Return the data to be used elsewhere if needed
+  })
+  .catch(error => {
+    console.error(error);
+    throw error; // Rethrow the error for error handling elsewhere if needed
+  });
+}
+
+export {fetchData, fetchDataGenrea, fetchDataNewMovie, searchMovie, getCast, getSimilarFilm, searchByPage};

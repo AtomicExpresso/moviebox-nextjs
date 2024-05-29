@@ -1,19 +1,18 @@
 'use client'
 import { useState, useEffect } from "react";
-import { useRouter } from 'next/navigation'
 import { dataType } from "@/typeings/types";
-import { fetchData } from "@/lib/api";
+import { searchByPage } from "@/lib/api";
 import Link from "next/link";
 import GenereButtons from "../home/genreButtons";
 
 
-export default function DiscoverComp({HandlePageNumber}: {HandlePageNumber: Function}){
+export default function DiscoverComp({HandlePageNumber, HandlePrevPageNumber, slicePath}: {HandlePageNumber: Function, HandlePrevPageNumber: Function, slicePath: string}){
   const [data, setData] = useState<dataType[]>([]);
 
   useEffect(() => {
     const FetchDataAsync = async () => {
       try {
-        const fetchMovies = await fetchData(11);
+        const fetchMovies = await searchByPage(Number(slicePath));
         setData(fetchMovies.results);
 
       } catch (error) {
@@ -47,7 +46,12 @@ export default function DiscoverComp({HandlePageNumber}: {HandlePageNumber: Func
         }
       </div>
       <div className="discover-page-bottom">
-        <button onClick={() => HandlePageNumber()} className="btn btn-danger">Next Page</button>
+        {Number(slicePath) > 1 ? 
+          <div>
+            <button className="btn btn-light" onClick={() => HandlePrevPageNumber()}>Previous</button>
+          </div>
+        : null}
+        <button onClick={() => HandlePageNumber()} className="btn btn-danger">Next</button>
       </div>
     </div>
   )

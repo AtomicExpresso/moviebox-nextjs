@@ -15,10 +15,10 @@ const Similar: React.FC<Props> = ({similarData}) => {
   
   const [btnArrow, setBtnArrow] = useState(false);
 
-  const scrollElement = useRef(null);
+  const scrollElement = useRef<HTMLDivElement>(null);
 
   const scrollArrow = (direct: string) => {
-    direct === "right" ? scrollElement.current.scrollLeft += 300 : scrollElement.current.scrollLeft += -300
+    direct === "right" ? scrollElement.current!.scrollLeft += 300 : scrollElement.current!.scrollLeft += -300
   }
 
 
