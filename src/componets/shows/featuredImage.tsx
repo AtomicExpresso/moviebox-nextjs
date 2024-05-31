@@ -20,7 +20,7 @@ const FeaturedImage: React.FC<Props> = ({data}) => {
             <h1>{data[RandomFeaturedBG].original_name}</h1>
             <p>{data[RandomFeaturedBG].overview.length > 200 ? `${data[RandomFeaturedBG].overview.substring(0, 200)}...` : data[RandomFeaturedBG].overview}</p>
             <div className='featured-movie-btn'>
-              <Link href={`/movie/${data[RandomFeaturedBG].id}`}><button className='btn btn-danger'>Watch</button></Link>
+              <Link href={`/tv/${data[RandomFeaturedBG].id}`}><button className='btn btn-danger'>Watch</button></Link>
               <button className='btn btn-light'>Info</button>
             </div>
           </div>

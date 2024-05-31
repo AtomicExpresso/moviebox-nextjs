@@ -20,4 +20,17 @@
   h1 {
     font-size: 16px;
   }
+
+  h2 {
+    font-size: 16px;
+  }
+}
+
+.movie-page-overview{
+  display: flex;
+  flex-direction: column;
+
+  p {
+    max-width: 700px;
+  }
 }

@@ -1,6 +1,15 @@
 export interface dataType {
   title: string;
   original_name: string;
+  name: string;
+  first_air_date: string; //show
+  number_of_seasons: string; //show
+  homepage: string; //show
+  created_by: {
+    name: string;
+    id: number;
+    credit_id: number;
+  }[]; //show
   adult: boolean;
   id: number;
   belongs_to_collection: any; // Define this type based on the actual data structure
@@ -28,6 +37,12 @@ export interface castType {
   genres: {
     id: number,
     name: string
+  }[];
+  cast: {
+    name: string;
+    profile_path: string;
+    character: string;
+    id: number;
   }[];
   credits: {
     crew: {

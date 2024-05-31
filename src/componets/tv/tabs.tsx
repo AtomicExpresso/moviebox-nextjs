@@ -1,17 +1,17 @@
 'use client'
 import { useState, useRef } from "react";
-import {castType} from '@/typeings/types';
+import {castType, dataType} from '@/typeings/types';
 import Image from 'next/image';
 
 import ArrowRight from '@/assets/images/right-solid.svg';
 import ArrowLeft from '@/assets/images/left-solid.svg';
-import DefaultImg from '@/assets/images/default.jpg'
 
 interface Props {
   castData: castType[];
+  data: dataType[];
 }
 
-const Tabs: React.FC<Props> = ({castData}) => {
+const Tabs: React.FC<Props> = ({castData, data}) => {
   const [curTab, setCurTab] = useState('Overview');
 
     //====Active Tab Styles====
@@ -57,20 +57,20 @@ const Tabs: React.FC<Props> = ({castData}) => {
             {castData.length > 0 && curTab === 'Overview' ? 
             <div className="movie-page-info-overview-container">
               <h1>Description</h1>
-              <p>{castData[0].overview}</p>
+              <p>{data[0].overview}</p>
               <div className="movie-page-info-card-container">
                 <div className="movie-page-info-card">
-                  <h1>Director</h1>
-                  <h2>{castData[0].credits.crew[0] ? castData[0].credits.crew[0].name : 'N/A'}</h2>
+                  <h1>Created by</h1>
+                  <h2>{data[0].created_by[0] ? data[0].created_by[0].name : 'N/A'}</h2>
                 </div>
                 <div className="movie-page-info-card">
                   <h1>Country</h1>
-                  <h2>{castData[0].origin_country[0]}</h2>
+                  <h2>{data[0].origin_country[0]}</h2>
                 </div>
                 <div className="movie-page-info-card">
                   <h1>Genres</h1>
                   <div className="movie-page-info-card-nested-container">
-                  {castData[0].genres.map(item => {
+                  {data[0].genres.map(item => {
                     return (
                       <div className="movie-page-info-card-nested" key={item.id}>
                         <h3>{item.name}</h3>
@@ -87,21 +87,22 @@ const Tabs: React.FC<Props> = ({castData}) => {
                 <h1>Cast</h1>
                 <div style={{position: 'relative'}} onMouseOver={() => setBtnArrow(true)} onMouseOut={() => setBtnArrow(false)}>
                 <div className="cast-container" ref={scrollElement}>
-                  {castData[0].credits.cast.map((item: any, index: number) => {
+                  {castData[0].cast.map((item: any, index: number) => {
                         return (
                           <div>
-                            {item.profile_path ? 
-                              <div className="cast-item-container" key={index}>
-                              <img draggable='false' src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}></img>
-                              <h1>{item.name}</h1>
-                              <h2>{item.character}</h2>
-                            </div> : null}
+                          {item.profile_path ?
+                            <div className="cast-item-container" key={index}>
+                            <img draggable='false' src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}></img>
+                            <h1>{item.name}</h1>
+                            <h2>{item.character}</h2>
+                          </div>
+                          : null}
                         </div>
-                      )
+                        )
                       })
                     }
                   </div>
-                  {castData[0].credits.cast.length > 5 ? btnArrow && 
+                  {castData[0].cast.length > 5 ? btnArrow && 
                     <>
                       <div className="item-movie-btn-arrow" onClick={() => scrollArrow("right")}>
                         <Image draggable='false' src={ArrowRight} alt='scroll right'></Image>

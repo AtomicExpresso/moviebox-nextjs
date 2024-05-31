@@ -309,6 +309,7 @@
   display: flex;
   margin: 20px;
   gap: 1%;
+  width: 95vw;
 
   & .movie-page-poster{
     img {
@@ -611,6 +612,7 @@
     flex-wrap: wrap;
     width: 95vw;
     gap: 10px;
+    margin: 10px 5px;
 
     & .movie-page-btn{
       button {
@@ -721,5 +723,11 @@
 
   .item-movie-holder{
     height: 180px;
+  }
+
+  .movie-page-overview{
+    p {
+      max-width: 500px !important;
+    }
   }
 }

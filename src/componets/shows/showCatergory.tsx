@@ -76,7 +76,7 @@ export default function MovieCategory() {
     return mapTitle.map((item) => {
     return (
       <>
-      {item.poster_path ? <Link href={`/movie/${item.id}`} key={item.id}>
+      {item.poster_path ? <Link href={`/tv/${item.id}`} key={item.id}>
         <div className='item-movie'>
           <img draggable='false' src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}></img>
           <div className='movie-item-info'>
