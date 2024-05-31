@@ -1,5 +1,6 @@
 export interface dataType {
-  title: string
+  title: string;
+  original_name: string;
   adult: boolean;
   id: number;
   belongs_to_collection: any; // Define this type based on the actual data structure

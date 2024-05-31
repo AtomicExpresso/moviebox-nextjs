@@ -1,4 +1,4 @@
-import MovieCategory from "@/componets/home/movieCatergory";
+import MovieCategory from "@/componets/films/movieCatergory";
 import Footer from "@/componets/main/footer";
 import '../sass/moviespage.scss';
 
