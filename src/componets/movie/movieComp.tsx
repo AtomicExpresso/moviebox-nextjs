@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import {searchMovie, getCast, getSimilarFilm} from '@/lib/api';
 import {dataType, castType} from '@/typeings/types';
 import { usePathname } from 'next/navigation';
@@ -30,13 +30,15 @@ export default function MovieComp(){
   useEffect(() => {
     const fetchDataAsync = async () => {
       try {
-        const searchFilm = await searchMovie(Number(slicePath));
+        const [searchFilm, fetchCast, fetchSimilarFilms] = Promise.all([
+          searchMovie(Number(slicePath)),
+          getCast(Number(slicePath)),
+          getSimilarFilm(Number(slicePath)),
+
+        ])
+
         setData([searchFilm]);
-
-        const fetchCast = await getCast(Number(slicePath));
         setCastData([fetchCast]);
-
-        const fetchSimilarFilms = await getSimilarFilm(Number(slicePath));
         setSimilarData([fetchSimilarFilms.results]);
 
       } catch (error) {

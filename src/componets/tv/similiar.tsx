@@ -21,8 +21,6 @@ const Similar: React.FC<Props> = ({similarData}) => {
     direct === "right" ? scrollElement.current!.scrollLeft += 300 : scrollElement.current!.scrollLeft += -300
   }
 
-  console.log(similarData)
-
   return (
     <div className="movie-page-similar">
     <h1>Similar</h1>
@@ -30,13 +28,13 @@ const Similar: React.FC<Props> = ({similarData}) => {
      <div className="move-page-similar-img-container" ref={scrollElement}>
        {similarData[0].length > 0 ? similarData[0].map((item: any) => {
          return (
-          <>
+          <div key={item.id}>
            {item.poster_path ? <div key={item.id} className="movie-page-similar-imgs">
-             <Link href={`/movie/${item.id}`}>
+             <Link href={`/tv/${item.id}`}>
                <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}></img>
              </Link>
            </div> : null}
-           </>
+           </div>
          )
         })
       : <h1>N/A</h1>}

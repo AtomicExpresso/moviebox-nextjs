@@ -1,10 +1,11 @@
 'use client'
 import { useEffect, useState, useRef } from "react";
-import {fetchDataTVSeries, fetchDataCreditsTV, fetchDataSimilarTVSeries} from '@/lib/api';
+import {fetchDataTVSeries, fetchDataCreditsTV, fetchDataSimilarTVSeries, fetchDataSeasonsTV} from '@/lib/api';
 import {dataType, castType} from '@/typeings/types';
 import { usePathname } from 'next/navigation';
 import Tabs from "./tabs";
 import Similar from "./similiar";
+import TvSeasons from "./tvSeasons";
 
 import Link from "next/link";
 import Star from "@/assets/images/star-solid.svg";
@@ -15,6 +16,7 @@ export default function TvComp(){
   const [data, setData] = useState<dataType[]>([]);
   const [castData, setCastData] = useState<castType[]>([]);
   const [similarData, setSimilarData] = useState<dataType[]>([]);
+  const [seasons, setSeasons] = useState<dataType[]>([]);
 
   const pathname = usePathname();
   const slicePath = pathname.split("/")[2];
@@ -30,13 +32,16 @@ export default function TvComp(){
   useEffect(() => {
     const fetchDataAsync = async () => {
       try {
-        const searchShow = await fetchDataTVSeries(Number(slicePath));
+        const [searchShow, fetchSeasons, fetchCast, fetchSimilarShows] = await Promise.all([
+          fetchDataTVSeries(Number(slicePath)),
+          fetchDataSeasonsTV(Number(slicePath)),
+          fetchDataCreditsTV(Number(slicePath)),
+          fetchDataSimilarTVSeries(Number(slicePath))
+        ])
+
         setData([searchShow]);
-
-        const fetchCast = await fetchDataCreditsTV(Number(slicePath));
+        setSeasons([fetchSeasons]);
         setCastData([fetchCast]);
-
-        const fetchSimilarShows = await fetchDataSimilarTVSeries(Number(slicePath));
         setSimilarData([fetchSimilarShows.results]);
 
       } catch (error) {
@@ -78,6 +83,9 @@ export default function TvComp(){
       : ''}
       {data.length > 0 ? 
           <Tabs castData={castData} data={data}/>
+      : ""}
+      {seasons.length > 0 ? 
+          <TvSeasons season={seasons}/>
       : ""}
       {similarData.length > 0 ?
           <Similar similarData={similarData}/>
