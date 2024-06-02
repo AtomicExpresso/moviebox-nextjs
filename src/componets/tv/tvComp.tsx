@@ -21,14 +21,6 @@ export default function TvComp(){
   const pathname = usePathname();
   const slicePath = pathname.split("/")[2];
 
-  //In the json doc, Runtime is counted in minutes, so this code gets the
-  //Amount of hours and minutes from it
-  const ChangeTime = (time: number) => {
-    let convert = Math.floor(time / 60)
-    let minute = Math.floor(time % 60)
-    return `${convert}h ${minute}m`
-  }
-
   useEffect(() => {
     const fetchDataAsync = async () => {
       try {
