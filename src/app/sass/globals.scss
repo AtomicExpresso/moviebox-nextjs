@@ -560,6 +560,11 @@
   }
 }
 
+//Handles popup
+#root.popup:not(.show-seasons-episodes-container){
+  overflow-y: hidden;
+}
+
 @media screen and (max-width: 700px) {
   .footer {
     flex-direction: column;

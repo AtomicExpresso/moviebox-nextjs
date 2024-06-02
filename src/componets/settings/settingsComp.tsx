@@ -45,10 +45,12 @@ export default function SettingsComp(){
         <div className="settings-row">
           {arr.map(item => {
             return (
-              <div style={curSetting === item.name ? ActiveStyle : DefaultStyle} className="settings-page-item" onClick={() => setcurSetting(item.name)}>
+              <button onClick={() => setcurSetting(item.name)}>
+                <div style={curSetting === item.name ? ActiveStyle : DefaultStyle} className="settings-page-item">
                 <Image src={item.icon} alt={item.name}></Image>
                 <h2>{item.name}</h2>
               </div>
+              </button>
             )
           })}
         </div>

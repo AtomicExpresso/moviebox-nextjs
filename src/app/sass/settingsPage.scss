@@ -26,6 +26,11 @@
   display: flex;
   flex-direction: column;
   margin: 50px;
+
+  button {
+    background: none;
+    border: none;
+  }
 }
 
 .settings-category-container{
