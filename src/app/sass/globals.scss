@@ -735,4 +735,21 @@
       max-width: 500px !important;
     }
   }
+
+  .show-seasons-episodes-container{
+    flex-direction: column !important;
+  }
+
+  .show-seasons-episodes-title-container{
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: scroll !important;
+    overflow-y: hidden !important;
+    padding: 10px 5px 35px !important;
+  }
+
+  .season-episode-item-container{
+    flex-direction: column !important;
+    align-items: center !important;
+  }
 }

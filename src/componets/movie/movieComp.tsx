@@ -30,7 +30,7 @@ export default function MovieComp(){
   useEffect(() => {
     const fetchDataAsync = async () => {
       try {
-        const [searchFilm, fetchCast, fetchSimilarFilms] = Promise.all([
+        const [searchFilm, fetchCast, fetchSimilarFilms] = await Promise.all([
           searchMovie(Number(slicePath)),
           getCast(Number(slicePath)),
           getSimilarFilm(Number(slicePath)),
@@ -48,8 +48,6 @@ export default function MovieComp(){
 
     fetchDataAsync();
   }, []);
-
-  console.log(castData)
 
   return (
     <div className="movie-page-container">

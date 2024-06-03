@@ -10,6 +10,7 @@ export interface dataType {
     id: number;
     credit_id: number;
   }[]; //show
+  episodes: []; //show
   adult: boolean;
   id: number;
   belongs_to_collection: any; // Define this type based on the actual data structure
