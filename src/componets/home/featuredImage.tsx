@@ -6,10 +6,10 @@ interface Props {
 }
 // data[RandomFeaturedBG].overview.length
 const FeaturedImage: React.FC<Props> = ({data}) => {
-
   //Genrates a random number from 0 to the length of the data state array. This is used
   //to display a random featured image
   const RandomFeaturedBG = Math.floor(Math.random() * data.length)
+
   return (
     <div className='discover-page'>
       {data.length > 0 ? (
@@ -21,7 +21,6 @@ const FeaturedImage: React.FC<Props> = ({data}) => {
             <p>{data[RandomFeaturedBG].overview.length > 200 ? `${data[RandomFeaturedBG].overview.substring(0, 200)}...` : data[RandomFeaturedBG].overview}</p>
             <div className='featured-movie-btn'>
               <Link href={`/movie/${data[RandomFeaturedBG].id}`}><button className='btn btn-danger'>Watch</button></Link>
-              <button className='btn btn-light'>Info</button>
             </div>
           </div>
         </div> : null}

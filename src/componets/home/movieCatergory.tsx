@@ -78,9 +78,9 @@ export default function MovieCategory() {
   
   //Genreates a list of movies from the state arrays
   const CreateNewItems = ({mapTitle}: {mapTitle: dataType[]}) => {
-    return mapTitle.map((item) => {
+    return mapTitle.map((item, index) => {
     return (
-      <>
+      <div key={index}>
       {item.poster_path ? <Link href={`/movie/${item.id}`} key={item.id}>
         <div className='item-movie'>
           <img draggable='false' src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}></img>
@@ -94,7 +94,7 @@ export default function MovieCategory() {
         </div>
         </div>
     </Link> : null}
-    </>
+    </div>
     )
   })}
 

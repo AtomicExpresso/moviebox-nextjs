@@ -7,9 +7,24 @@ import lock from '@/assets/images/lock-solid.svg';
 import wallet from '@/assets/images/wallet-solid.svg';
 import info from '@/assets/images/info-question-solid.svg';
 
+interface settingFormType {
+  "adult-content": boolean,
+  "2-FA": boolean,
+  "dark-mode": boolean,
+  "notification": boolean,
+  "password-res-reminder": boolean,
+}
+
 export default function SettingsComp(){
   const arr = [{name: "General", icon: gear}, {name: "Appearance", icon: palette}, {name: "Security", icon: lock}, {name: "Billing", icon: wallet}, {name: "About", icon: info}];
   const [curSetting, setcurSetting] = useState("General");
+  const [formVar, setFormVar] = useState<settingFormType>({
+    "adult-content": false,
+    "2-FA": false,
+    "dark-mode": true,
+    "notification": true,
+    "password-res-reminder": true,
+  })
 
   const ActiveStyle = {
     backgroundColor: '#042633',
@@ -20,13 +35,25 @@ export default function SettingsComp(){
     backgroundColor: 'transparent'
   }
 
-  function ConstructComponet({title, compType}: {title: string, compType: string}){
+  //Handles form changes
+  function HandleChange(event: any){
+    const {name, checked} = event.target;
+
+    setFormVar(prevState => ({
+      ...prevState,
+      [name]: checked
+    }))
+  }
+
+  function ConstructComponet({title, compType, compName}: {title: string, compType: string, compName: string}){
     return (
       <div className="settings-componet">
         <h3>{title}</h3>
         <div className="settings-inner-componet">
           {compType === 'checkbox' ?
-            <input type="checkbox"></input>
+            <div className="form-check form-switch">
+              <input name={compName} className="form-check-input" type="checkbox" onChange={HandleChange} checked={formVar[compName]} role="switch"></input>
+            </div>
           : null}
           {compType === 'button' ?
             <button className="btn btn-light">Open</button>
@@ -43,14 +70,16 @@ export default function SettingsComp(){
       </div>
       <div className="settings-category-container">
         <div className="settings-row">
-          {arr.map(item => {
+          {arr.map((item, index) => {
             return (
-              <button onClick={() => setcurSetting(item.name)}>
-                <div style={curSetting === item.name ? ActiveStyle : DefaultStyle} className="settings-page-item">
-                <Image src={item.icon} alt={item.name}></Image>
-                <h2>{item.name}</h2>
+              <div key={index}>
+                <button onClick={() => setcurSetting(item.name)}>
+                  <div style={curSetting === item.name ? ActiveStyle : DefaultStyle} className="settings-page-item">
+                  <Image src={item.icon} alt={item.name}></Image>
+                  <h2>{item.name}</h2>
+                </div>
+                </button>
               </div>
-              </button>
             )
           })}
         </div>
@@ -58,19 +87,19 @@ export default function SettingsComp(){
           <h1>{curSetting}</h1>
           {curSetting === 'General' ?
             <div className="settings-componet-container">
-              <ConstructComponet title="Notifications" compType="checkbox"/>
-              <ConstructComponet title="Adult content" compType="checkbox"/>
+              <ConstructComponet title="Notifications" compType="checkbox" compName="notification"/>
+              <ConstructComponet title="Adult content" compType="checkbox" compName="adult-content"/>
             </div>
           : null}
           {curSetting === 'Appearance' ?
             <div className="settings-componet-container">
-              <ConstructComponet title="Dark mode" compType="checkbox"/>
+              <ConstructComponet title="Dark mode" compType="checkbox" compName="dark-mode"/>
             </div>
           : null}
           {curSetting === 'Security' ?
             <div className="settings-componet-container">
-              <ConstructComponet title="2-FA" compType="checkbox"/>
-              <ConstructComponet title="Password reset reminders" compType="checkbox"/>
+              <ConstructComponet title="2-FA" compName="2-FA" compType="checkbox"/>
+              <ConstructComponet title="Password reset reminders" compName="password-res-reminder" compType="checkbox"/>
             </div>
           : null}
           {curSetting === 'Billing' ?

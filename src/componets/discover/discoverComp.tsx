@@ -63,13 +63,13 @@ export default function DiscoverComp({HandlePageNumber, HandlePrevPageNumber, sl
       <div className="discover-page-img-container">
         {search.query.length <= 0 ? data.map((item, index) => {
           return (
-            <>
-            {item.poster_path ? <div className="discover-page-img-item" key={index}>
+            <div key={index}>
+            {item.poster_path ? <div className="discover-page-img-item">
               <Link href={`/movie/${item.id}`}>
                 <img draggable='false' src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}></img>
               </Link>
             </div> : null}
-            </>
+            </div>
           )
         }) : searchData.map((item, index) => {
           return (
