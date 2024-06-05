@@ -14,7 +14,6 @@ export default function SettingsComp(){
   const arr = [{name: "General", icon: gear}, {name: "Appearance", icon: palette}, {name: "Security", icon: lock}, {name: "Billing", icon: wallet}, {name: "About", icon: info}];
 
   const [curSetting, setcurSetting] = useState("General");
-  const [showTooltip, setShowTooltip] = useState(false);
 
   //Stores current settings in LocalStorage
   const storeSettings = localStorage.getItem('Settings');
@@ -49,17 +48,22 @@ export default function SettingsComp(){
   }
 
   function ConstructComponet({title, compType, compName, toolTipContent}: {title: string, compType: string, compName: string, toolTipContent: string}){
+
+    const [showTooltip, setshowTooltip] = useState(false);
+
     return (
+
       <div className="settings-componet">
-        <div className="settings-componet-tooltip" onMouseOver={() => setShowTooltip(true)} onMouseOut={() => setShowTooltip(false)}>
-          <Image src={QuestionMark} alt="tooltip" draggable='false'/>
-          <div>
-            {showTooltip ?
-              <div className="tooltipz">
-                <p>{toolTipContent}</p>
-              </div>
-            : null}
-          </div>
+        <div className="settings-componet-tooltip">
+          <Image src={QuestionMark} alt="tooltip" draggable='false' 
+            onMouseOver={() => setshowTooltip(true)}
+            onMouseOut={() => setshowTooltip(false)}
+          />
+          {showTooltip ?
+            <div className="tooltipz">
+              <p>{toolTipContent}</p>
+            </div>
+          : null}
         </div>
         <h3>{title}</h3>
         <div className="settings-inner-componet">
@@ -100,7 +104,7 @@ export default function SettingsComp(){
           <h1>{curSetting}</h1>
           {curSetting === 'General' ?
             <div className="settings-componet-container">
-              <ConstructComponet title="Notifications" compType="checkbox" compName="notification" toolTipContent="Rather you recieve notifications (Concept)"/>
+              <ConstructComponet title="Notifications" compType="checkbox" compName="notification" toolTipContent="Determines if you recieve notifications (Concept)"/>
               <ConstructComponet title="Adult content" compType="checkbox" compName="adult-content" toolTipContent="This setting allows you to hide or show NSFW content"/>
             </div>
           : null}
@@ -112,7 +116,7 @@ export default function SettingsComp(){
           {curSetting === 'Security' ?
             <div className="settings-componet-container">
               <ConstructComponet title="2-FA" compName="2-FA" compType="checkbox" toolTipContent="Two factor authentication for a more secure account (Concept)"/>
-              <ConstructComponet title="Password reset reminders" compName="password-res-reminder" compType="checkbox" toolTipContent="Sends you a password reset reminder every 60 days (Concept)"/>
+              <ConstructComponet title="Secure reminders" compName="password-res-reminder" compType="checkbox" toolTipContent="Sends you a password reset reminder every 60 days (Concept)"/>
             </div>
           : null}
           {curSetting === 'Billing' ?
