@@ -3,7 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import {fetchData, fetchDataGenrea, fetchDataNewMovie} from '@/lib/api';
-import {dataType} from '@/typeings/types';
+import {dataType, settingFormType} from '@/typeings/types';
+import defaultsettings from "@/data/defaultsettings";
 import ImageCategory from "./imageCategory";
 import ArrowRight from '@/assets/images/right-solid.svg';
 import ArrowLeft from '@/assets/images/left-solid.svg';
@@ -29,6 +30,8 @@ export default function MovieCategory() {
     historyMovies: []
   })
   const [dataNewMovies, setDataNewMovies] = useState<dataType[]>([]);
+  const getSettings = localStorage.getItem('Settings');
+  const [settingsData, setSettingsData] = useState<settingFormType>(getSettings ? JSON.parse(getSettings) : defaultsettings)
 
 
   useEffect(() => {
@@ -44,14 +47,14 @@ export default function MovieCategory() {
           historyMovies,
           newMovies
         ] = await Promise.all([
-          fetchData(11),
-          fetchDataGenrea(28),
-          fetchDataGenrea(35),
-          fetchDataGenrea(27),
-          fetchDataGenrea(878),
-          fetchDataGenrea(10751),
-          fetchDataGenrea(36),
-          fetchDataNewMovie(11)
+          fetchData(11, settingsData["adult-content"]),
+          fetchDataGenrea(28, settingsData["adult-content"]),
+          fetchDataGenrea(35, settingsData["adult-content"]),
+          fetchDataGenrea(27, settingsData["adult-content"]),
+          fetchDataGenrea(878, settingsData["adult-content"]),
+          fetchDataGenrea(10751, settingsData["adult-content"]),
+          fetchDataGenrea(36, settingsData["adult-content"]),
+          fetchDataNewMovie(11, settingsData["adult-content"])
         ]);
   
         setData(popularMovies.results);

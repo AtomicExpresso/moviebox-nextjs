@@ -3,7 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import {fetchDataTrendingTV, fetchDataTVGenrea} from '@/lib/api';
-import {dataType} from '@/typeings/types';
+import {dataType, settingFormType} from '@/typeings/types';
+import defaultsettings from "@/data/defaultsettings";
 import ArrowRight from '@/assets/images/right-solid.svg';
 import ArrowLeft from '@/assets/images/left-solid.svg';
 import rating from '@/assets/images/Rating.svg';
@@ -28,7 +29,8 @@ export default function MovieCategory() {
     animationShows: []
   })
   const [dataNewMovies, setDataNewMovies] = useState<dataType[]>([]);
-
+  const getSettings = localStorage.getItem('Settings');
+  const [settingsData, setSettingsData] = useState<settingFormType>(getSettings ? JSON.parse(getSettings) : defaultsettings)
 
   useEffect(() => {
     const fetchDataAsync = async () => {
@@ -42,13 +44,13 @@ export default function MovieCategory() {
           realityShows,
           animationShows
         ] = await Promise.all([
-          fetchDataTrendingTV(11),
-          fetchDataTVGenrea(10759),
-          fetchDataTVGenrea(35),
-          fetchDataTVGenrea(80),
-          fetchDataTVGenrea(18),
-          fetchDataTVGenrea(10764),
-          fetchDataTVGenrea(16)
+          fetchDataTrendingTV(11, settingsData["adult-content"]),
+          fetchDataTVGenrea(10759, settingsData["adult-content"]),
+          fetchDataTVGenrea(35, settingsData["adult-content"]),
+          fetchDataTVGenrea(80, settingsData["adult-content"]),
+          fetchDataTVGenrea(18, settingsData["adult-content"]),
+          fetchDataTVGenrea(10764, settingsData["adult-content"]),
+          fetchDataTVGenrea(16, settingsData["adult-content"])
         ]);
   
         setData(trendingShows.results);

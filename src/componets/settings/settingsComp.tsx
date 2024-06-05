@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import gear from '@/assets/images/gear-solid.svg';
 import palette from '@/assets/images/palette-solid.svg';
@@ -7,14 +7,8 @@ import lock from '@/assets/images/lock-solid.svg';
 import wallet from '@/assets/images/wallet-solid.svg';
 import info from '@/assets/images/info-question-solid.svg';
 import QuestionMark from '@/assets/images/circle-question-solid.svg';
-
-interface settingFormType {
-  "adult-content": boolean,
-  "2-FA": boolean,
-  "dark-mode": boolean,
-  "notification": boolean,
-  "password-res-reminder": boolean,
-}
+import { settingFormType } from "@/typeings/types";
+import defaultsettings from "@/data/defaultsettings";
 
 export default function SettingsComp(){
   const arr = [{name: "General", icon: gear}, {name: "Appearance", icon: palette}, {name: "Security", icon: lock}, {name: "Billing", icon: wallet}, {name: "About", icon: info}];
@@ -28,13 +22,7 @@ export default function SettingsComp(){
   const [formVar, setFormVar] = useState<settingFormType>(
   storeSettings
   ? JSON.parse(storeSettings) as settingFormType 
-  : {
-    "adult-content": false,
-    "2-FA": false,
-    "dark-mode": true,
-    "notification": true,
-    "password-res-reminder": true,
-  });
+  : defaultsettings);
   
   localStorage.setItem('Settings', JSON.stringify(formVar))
 

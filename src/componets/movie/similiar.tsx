@@ -21,8 +21,6 @@ const Similar: React.FC<Props> = ({similarData}) => {
     direct === "right" ? scrollElement.current!.scrollLeft += 300 : scrollElement.current!.scrollLeft += -300
   }
 
-  console.log(similarData)
-
   return (
     <div className="movie-page-similar">
     <h1>Similar</h1>

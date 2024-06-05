@@ -1,13 +1,17 @@
 'use client'
 import { useState, useEffect } from "react";
-import { dataType } from "@/typeings/types";
+import { dataType, settingFormType } from "@/typeings/types";
 import { searchByPage, searchByName } from "@/lib/api";
 import Link from "next/link";
+import defaultsettings from "@/data/defaultsettings";
 
 export default function DiscoverComp({HandlePageNumber, HandlePrevPageNumber, slicePath}: {HandlePageNumber: Function, HandlePrevPageNumber: Function, slicePath: string}){
   const [data, setData] = useState<dataType[]>([]);
   const [searchData, setSearchData] = useState<dataType[]>([]);
   const [search, setSearch] = useState({query: ''});
+
+  const getSettings = localStorage.getItem('Settings');
+  const [settingsData, setSettingsData] = useState<settingFormType>(getSettings ? JSON.parse(getSettings) : defaultsettings)
 
   function HandleChange(event: any){
     let value = event.target.value;
@@ -23,7 +27,7 @@ export default function DiscoverComp({HandlePageNumber, HandlePrevPageNumber, sl
   useEffect(() => {
     const FetchDataAsync = async () => {
       try {
-        const fetchMovieName = await searchByName(search.query);
+        const fetchMovieName = await searchByName(search.query, settingsData["adult-content"]);
         setSearchData(fetchMovieName.results);
 
       } catch (error) {
@@ -38,7 +42,7 @@ export default function DiscoverComp({HandlePageNumber, HandlePrevPageNumber, sl
   useEffect(() => {
     const FetchDataAsync = async () => {
       try {
-        const fetchMovies = await searchByPage(Number(slicePath));
+        const fetchMovies = await searchByPage(Number(slicePath), settingsData["adult-content"]);
         setData(fetchMovies.results);
       } catch (error) {
         console.error(error);
@@ -48,8 +52,6 @@ export default function DiscoverComp({HandlePageNumber, HandlePrevPageNumber, sl
     FetchDataAsync();
 
   }, [setData]);
-
-  console.log(searchData)
 
   return (
     <div className="discover-page">

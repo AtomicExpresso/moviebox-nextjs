@@ -60,3 +60,11 @@ export interface castType {
       }
     };
   }
+
+  export interface settingFormType {
+    "adult-content": boolean,
+    "2-FA": boolean,
+    "dark-mode": boolean,
+    "notification": boolean,
+    "password-res-reminder": boolean,
+  }

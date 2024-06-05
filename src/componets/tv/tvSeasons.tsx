@@ -23,7 +23,6 @@ export default function TvSeasons({season}: {season: any}){
     setShowEpisodePopup(false)
   }
 
-  console.log(season[0].seasons)
   return (
     <div className="movie-page-similar">
       <h1>Seasons</h1>

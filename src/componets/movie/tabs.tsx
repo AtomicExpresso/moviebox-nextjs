@@ -34,7 +34,6 @@ const Tabs: React.FC<Props> = ({castData}) => {
       direct === "right" ? scrollElement.current!.scrollLeft += 300 : scrollElement.current!.scrollLeft += -300
     }
   
-    console.log(castData)
   return (
     <div className="movie-page-tabs">
             <ul>

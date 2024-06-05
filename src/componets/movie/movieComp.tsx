@@ -1,7 +1,8 @@
 'use client'
 import { useEffect, useState } from "react";
 import {searchMovie, getCast, getSimilarFilm} from '@/lib/api';
-import {dataType, castType} from '@/typeings/types';
+import {dataType, castType, settingFormType} from '@/typeings/types';
+import defaultsettings from "@/data/defaultsettings";
 import { usePathname } from 'next/navigation';
 import Tabs from "@/componets/movie/tabs";
 import Similar from "@/componets/movie/similiar";
@@ -15,6 +16,8 @@ export default function MovieComp(){
   const [data, setData] = useState<dataType[]>([]);
   const [castData, setCastData] = useState<castType[]>([]);
   const [similarData, setSimilarData] = useState<dataType[]>([]);
+  const getSettings = localStorage.getItem('Settings');
+  const [settingsData, setSettingsData] = useState<settingFormType>(getSettings ? JSON.parse(getSettings) : defaultsettings)
 
   const pathname = usePathname();
   const slicePath = pathname.split("/")[2];
@@ -31,9 +34,9 @@ export default function MovieComp(){
     const fetchDataAsync = async () => {
       try {
         const [searchFilm, fetchCast, fetchSimilarFilms] = await Promise.all([
-          searchMovie(Number(slicePath)),
+          searchMovie(Number(slicePath), settingsData["adult-content"]),
           getCast(Number(slicePath)),
-          getSimilarFilm(Number(slicePath)),
+          getSimilarFilm(Number(slicePath), settingsData["adult-content"]),
 
         ])
 

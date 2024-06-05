@@ -1,7 +1,8 @@
 'use client'
 import { useEffect, useState, useRef } from "react";
 import {fetchDataTVSeries, fetchDataCreditsTV, fetchDataSimilarTVSeries, fetchDataSeasonsTV} from '@/lib/api';
-import {dataType, castType} from '@/typeings/types';
+import {dataType, castType, settingFormType} from '@/typeings/types';
+import defaultsettings from "@/data/defaultsettings";
 import { usePathname } from 'next/navigation';
 import Tabs from "./tabs";
 import Similar from "./similiar";
@@ -17,6 +18,8 @@ export default function TvComp(){
   const [castData, setCastData] = useState<castType[]>([]);
   const [similarData, setSimilarData] = useState<dataType[]>([]);
   const [seasons, setSeasons] = useState<dataType[]>([]);
+  const getSettings = localStorage.getItem('Settings');
+  const [settingsData, setSettingsData] = useState<settingFormType>(getSettings ? JSON.parse(getSettings) : defaultsettings)
 
   const pathname = usePathname();
   const slicePath = pathname.split("/")[2];
@@ -28,7 +31,7 @@ export default function TvComp(){
           fetchDataTVSeries(Number(slicePath)),
           fetchDataSeasonsTV(Number(slicePath)),
           fetchDataCreditsTV(Number(slicePath)),
-          fetchDataSimilarTVSeries(Number(slicePath))
+          fetchDataSimilarTVSeries(Number(slicePath), settingsData["adult-content"])
         ])
 
         setData([searchShow]);
@@ -43,8 +46,6 @@ export default function TvComp(){
 
     fetchDataAsync();
   }, []);
-
-  console.log(castData)
 
   return (
     <div className="movie-page-container">
