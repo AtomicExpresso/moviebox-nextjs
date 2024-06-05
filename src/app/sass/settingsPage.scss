@@ -89,19 +89,22 @@
   }
 }
 
-.settings-componet{
+.settings-componet-tooltip{
   position: relative;
 }
 
-.settings-componet-tooltip{
+.tooltipz{
   position: absolute;
-}
+  background-color: rgb(47, 47, 47);
+  padding: 3px 10px;
+  width: 180px;
+  border-radius: 4px;
+  z-index: 500;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  border: solid 1px rgba(255, 255, 255, 0.199);
 
-.tooltip{
-  background-color: white;
-  padding: 200px;
-
-  h1 {
-    color: red;
+  p {
+    font-size: 13px;
+    margin: auto;
   }
 }

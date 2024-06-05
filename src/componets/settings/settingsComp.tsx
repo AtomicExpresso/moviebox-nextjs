@@ -48,16 +48,18 @@ export default function SettingsComp(){
     backgroundColor: 'transparent'
   }
 
-  function ConstructComponet({title, compType, compName}: {title: string, compType: string, compName: string}){
+  function ConstructComponet({title, compType, compName, toolTipContent}: {title: string, compType: string, compName: string, toolTipContent: string}){
     return (
       <div className="settings-componet">
         <div className="settings-componet-tooltip" onMouseOver={() => setShowTooltip(true)} onMouseOut={() => setShowTooltip(false)}>
           <Image src={QuestionMark} alt="tooltip" draggable='false'/>
-          {showTooltip ?
-            <div className="tooltip">
-              <h1>This is a tooltip!</h1>
-            </div>
-          : null}
+          <div>
+            {showTooltip ?
+              <div className="tooltipz">
+                <p>{toolTipContent}</p>
+              </div>
+            : null}
+          </div>
         </div>
         <h3>{title}</h3>
         <div className="settings-inner-componet">
@@ -98,26 +100,26 @@ export default function SettingsComp(){
           <h1>{curSetting}</h1>
           {curSetting === 'General' ?
             <div className="settings-componet-container">
-              <ConstructComponet title="Notifications" compType="checkbox" compName="notification"/>
-              <ConstructComponet title="Adult content" compType="checkbox" compName="adult-content"/>
+              <ConstructComponet title="Notifications" compType="checkbox" compName="notification" toolTipContent="Rather you recieve notifications (Concept)"/>
+              <ConstructComponet title="Adult content" compType="checkbox" compName="adult-content" toolTipContent="This setting allows you to hide or show NSFW content"/>
             </div>
           : null}
           {curSetting === 'Appearance' ?
             <div className="settings-componet-container">
-              <ConstructComponet title="Dark mode" compType="checkbox" compName="dark-mode"/>
+              <ConstructComponet title="Dark mode" compType="checkbox" compName="dark-mode" toolTipContent="Change theme from dark or light"/>
             </div>
           : null}
           {curSetting === 'Security' ?
             <div className="settings-componet-container">
-              <ConstructComponet title="2-FA" compName="2-FA" compType="checkbox"/>
-              <ConstructComponet title="Password reset reminders" compName="password-res-reminder" compType="checkbox"/>
+              <ConstructComponet title="2-FA" compName="2-FA" compType="checkbox" toolTipContent="Two factor authentication for a more secure account (Concept)"/>
+              <ConstructComponet title="Password reset reminders" compName="password-res-reminder" compType="checkbox" toolTipContent="Sends you a password reset reminder every 60 days (Concept)"/>
             </div>
           : null}
           {curSetting === 'Billing' ?
             <div className="settings-componet-container">
-              <ConstructComponet title="Information" compType="button" compName={''}/>
-              <ConstructComponet title="Billing cycle" compType="button" compName={''}/>
-              <ConstructComponet title="Subscription" compType="button" compName={''}/>
+              <ConstructComponet title="Information" compType="button" compName={''} toolTipContent="Shows billing information, such as address, zip, etc (Concept)"/>
+              <ConstructComponet title="Billing cycle" compType="button" compName={''} toolTipContent="Shows your current billing cycle (Concept)"/>
+              <ConstructComponet title="Subscription" compType="button" compName={''} toolTipContent="Subscription status (Concept)"/>
             </div>
           : null}
           {curSetting === 'About' ?
