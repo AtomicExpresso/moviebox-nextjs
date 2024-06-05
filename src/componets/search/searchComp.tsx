@@ -2,6 +2,8 @@
 import { useEffect, useState } from "react";
 import { dataType } from "@/typeings/types";
 import { searchByName } from "@/lib/api";
+import searchIcon from "@/assets/images/search-solid.svg";
+import Image from "next/image";
 import Link from "next/link";
 
 export default function SearchComp(){
@@ -35,10 +37,32 @@ export default function SearchComp(){
     <div className="search-page">
       <div className="search-page-title" style={searchData.length > 0 ? {marginLeft: 'auto'} : {margin: '19vh 10vw'}}>
         <h1>Movie<span>Box</span></h1>
-        <input type="text" className="form-control" placeholder="search...." onChange={HandleChange} name="query"></input>
+        <div className="search-box-container">
+          <input type="text" className="form-control" onChange={HandleChange} name="query"></input>
+          {search.query.length === 0 ?
+            <Image src={searchIcon} alt="search"></Image>
+          : null}
+        </div>
         {searchData.length <= 0 ? (
-          <div>
-            <h1>Placeholder</h1>
+          <div className="search-filter-container">
+            <div className="filter-btn-row">
+              <div className="filter-item">
+                <label htmlFor="film-type">Film type:</label>
+                <select name="film-type" className="form-select">
+                  <option>Any</option>
+                  <option>Movie</option>
+                  <option>Show</option>
+                </select>
+              </div>
+              <div className="filter-item">
+                <label htmlFor="film-type">Genre:</label>
+                <select name="film-type" className="form-select">
+                  <option>Any</option>
+                  <option>Movie</option>
+                  <option>Show</option>
+                </select>
+              </div>
+            </div>
           </div>
         ) : null}
       </div>

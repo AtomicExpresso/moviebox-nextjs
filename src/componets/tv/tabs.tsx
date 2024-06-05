@@ -34,7 +34,6 @@ const Tabs: React.FC<Props> = ({castData, data}) => {
       direct === "right" ? scrollElement.current!.scrollLeft += 300 : scrollElement.current!.scrollLeft += -300
     }
   
-    console.log(castData)
   return (
     <div className="movie-page-tabs">
             <ul>
@@ -89,9 +88,9 @@ const Tabs: React.FC<Props> = ({castData, data}) => {
                 <div className="cast-container" ref={scrollElement}>
                   {castData[0].cast.map((item: any, index: number) => {
                         return (
-                          <div>
+                          <div key={index}>
                           {item.profile_path ?
-                            <div className="cast-item-container" key={index}>
+                            <div className="cast-item-container">
                             <img draggable='false' src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}></img>
                             <h1>{item.name}</h1>
                             <h2>{item.character}</h2>

@@ -14,11 +14,35 @@
   span {
     color: #dc3546;
   }
+}
+
+.search-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 40px;
+}
+
+.filter-btn-row{
+  display: flex;
+  gap: 10px;
+}
+
+.search-filter-container{
+  h1 {
+    font-size: 18px;
+  }
+}
+
+.search-box-container{
+  display: flex;
+  position: relative;
 
   input {
     width: 100%;
     background-color: rgb(12, 12, 12);
     color: white;
+    padding-left: 25px;
 
     &:focus{
       background-color: rgb(12, 12, 12);
@@ -30,11 +54,23 @@
       color: white;
     }
   }
+
+  img {
+    position: absolute;
+    top: 30%;
+    left: 3%;
+    width: 14px;
+    height: 14px;
+    filter: brightness(0) saturate(100%) invert(94%) sepia(100%) saturate(0%) hue-rotate(154deg) brightness(105%) contrast(105%);
+  }
 }
 
-.search-page{
+.filter-item{
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 40px;
+  gap: 5px;
+
+  label {
+    color: white;
+  }
 }

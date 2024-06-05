@@ -1,11 +1,12 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import gear from '@/assets/images/gear-solid.svg';
 import palette from '@/assets/images/palette-solid.svg';
 import lock from '@/assets/images/lock-solid.svg';
 import wallet from '@/assets/images/wallet-solid.svg';
 import info from '@/assets/images/info-question-solid.svg';
+import QuestionMark from '@/assets/images/circle-question-solid.svg';
 
 interface settingFormType {
   "adult-content": boolean,
@@ -17,14 +18,38 @@ interface settingFormType {
 
 export default function SettingsComp(){
   const arr = [{name: "General", icon: gear}, {name: "Appearance", icon: palette}, {name: "Security", icon: lock}, {name: "Billing", icon: wallet}, {name: "About", icon: info}];
+
   const [curSetting, setcurSetting] = useState("General");
-  const [formVar, setFormVar] = useState<settingFormType>({
+  const [showTooltip, setShowTooltip] = useState(false);
+
+  //Stores current settings in LocalStorage
+  const storeSettings = localStorage.getItem('Settings');
+
+  const [formVar, setFormVar] = useState<settingFormType>(
+  storeSettings
+  ? JSON.parse(storeSettings) as settingFormType 
+  : {
     "adult-content": false,
     "2-FA": false,
     "dark-mode": true,
     "notification": true,
     "password-res-reminder": true,
-  })
+  });
+  
+  localStorage.setItem('Settings', JSON.stringify(formVar))
+
+  //Handles any change that is made to the settings
+  function HandleChange(event: any){
+    const {name, checked} = event.target;
+  
+    setFormVar(prevState => ({
+      ...prevState,
+      [name]: checked
+    }))
+
+    localStorage.removeItem("Settings");
+    localStorage.setItem('Settings', JSON.stringify(formVar))
+  }
 
   const ActiveStyle = {
     backgroundColor: '#042633',
@@ -35,24 +60,22 @@ export default function SettingsComp(){
     backgroundColor: 'transparent'
   }
 
-  //Handles form changes
-  function HandleChange(event: any){
-    const {name, checked} = event.target;
-
-    setFormVar(prevState => ({
-      ...prevState,
-      [name]: checked
-    }))
-  }
-
   function ConstructComponet({title, compType, compName}: {title: string, compType: string, compName: string}){
     return (
       <div className="settings-componet">
+        <div className="settings-componet-tooltip" onMouseOver={() => setShowTooltip(true)} onMouseOut={() => setShowTooltip(false)}>
+          <Image src={QuestionMark} alt="tooltip" draggable='false'/>
+          {showTooltip ?
+            <div className="tooltip">
+              <h1>This is a tooltip!</h1>
+            </div>
+          : null}
+        </div>
         <h3>{title}</h3>
         <div className="settings-inner-componet">
           {compType === 'checkbox' ?
             <div className="form-check form-switch">
-              <input name={compName} className="form-check-input" type="checkbox" onChange={HandleChange} checked={formVar[compName]} role="switch"></input>
+              <input name={compName} className="form-check-input" type="checkbox" onChange={(e) => HandleChange(e)} checked={formVar[compName]} role="switch"></input>
             </div>
           : null}
           {compType === 'button' ?
@@ -104,9 +127,9 @@ export default function SettingsComp(){
           : null}
           {curSetting === 'Billing' ?
             <div className="settings-componet-container">
-              <ConstructComponet title="Information" compType="button"/>
-              <ConstructComponet title="Billing cycle" compType="button"/>
-              <ConstructComponet title="Subscription" compType="button"/>
+              <ConstructComponet title="Information" compType="button" compName={''}/>
+              <ConstructComponet title="Billing cycle" compType="button" compName={''}/>
+              <ConstructComponet title="Subscription" compType="button" compName={''}/>
             </div>
           : null}
           {curSetting === 'About' ?

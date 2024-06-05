@@ -1,5 +1,5 @@
 import SettingsComp from "@/componets/settings/settingsComp";
-import '../sass/settingsPage.scss'
+import '../sass/settingsPage.scss';
 
 export default function page(){
   return (

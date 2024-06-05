@@ -73,10 +73,35 @@
   display: flex;
   justify-content: space-between;
   width: 280px;
+
+  img {
+    width: 16px;
+    height: 16px;
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+    margin: 2px 0;
+  }
 }
 
 .settings-inner-componet{
   & input {
     padding: 10px 30px;
+    cursor: pointer;
+  }
+}
+
+.settings-componet{
+  position: relative;
+}
+
+.settings-componet-tooltip{
+  position: absolute;
+}
+
+.tooltip{
+  background-color: white;
+  padding: 200px;
+
+  h1 {
+    color: red;
   }
 }
