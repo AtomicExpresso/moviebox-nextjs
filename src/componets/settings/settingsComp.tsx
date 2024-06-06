@@ -18,7 +18,7 @@ export default function SettingsComp(){
   //Stores current settings in LocalStorage
   let getSettings;
   useEffect(() => {
-    getSettings = window?.localStorage?.getItem('Settings') ? localStorage.getItem('Settings') : null;
+    getSettings = localStorage.getItem('Settings');
   }, [])
 
   const [formVar, setFormVar] = useState<settingFormType>(

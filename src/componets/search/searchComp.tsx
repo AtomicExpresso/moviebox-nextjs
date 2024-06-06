@@ -10,7 +10,7 @@ import defaultsettings from "@/data/defaultsettings";
 export default function SearchComp(){
   let getSettings;
   useEffect(() => {
-    getSettings = window?.localStorage?.getItem('Settings') ? localStorage.getItem('Settings') : null;
+    getSettings = localStorage.getItem('Settings');
   }, [])
 
   const [search, setSearch] = useState({query: ''});
