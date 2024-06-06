@@ -10,9 +10,9 @@ import defaultsettings from "@/data/defaultsettings";
 export default function SearchComp(){
   let getSettings;
   useEffect(() => {
-    getSettings = window?.localStorage?.getItem("user") ? localStorage.getItem('Settings') : null;
+    getSettings = window?.localStorage?.getItem('Settings') ? localStorage.getItem('Settings') : null;
   }, [])
-  
+
   const [search, setSearch] = useState({query: ''});
   const [searchData, setSearchData] = useState<dataType[]>([]);
   const [settingsData, setSettingsData] = useState<settingFormType>(getSettings ? JSON.parse(getSettings) : defaultsettings)

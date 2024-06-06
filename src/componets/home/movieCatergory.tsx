@@ -33,9 +33,9 @@ export default function MovieCategory() {
 
   let getSettings;
   useEffect(() => {
-    getSettings = window?.localStorage?.getItem("user") ? localStorage.getItem('Settings') : null;
+    getSettings = window?.localStorage?.getItem('Settings') ? localStorage.getItem('Settings') : null;
   }, [])
-  
+
   const [settingsData, setSettingsData] = useState<settingFormType>(getSettings ? JSON.parse(getSettings) : defaultsettings)
 
 
