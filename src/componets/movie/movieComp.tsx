@@ -57,7 +57,7 @@ export default function MovieComp(){
       {data.length > 0 ? 
       <div className="movie-page">
           <div className="movie-page-poster">
-            <img src={`https://image.tmdb.org/t/p/w500/${data[0].poster_path}`}></img>
+            <img src={`https://image.tmdb.org/t/p/w500/${data[0].poster_path}`} alt="movie poster"></img>
           </div>
           <div style={{color: "white"}} className="movie-page-overview">
           <h1>{data[0].title}</h1>

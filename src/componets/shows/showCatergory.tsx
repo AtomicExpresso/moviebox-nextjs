@@ -80,7 +80,7 @@ export default function MovieCategory() {
       <div key={index}>
       {item.poster_path ? <Link href={`/tv/${item.id}`} key={item.id}>
         <div className='item-movie'>
-          <img draggable='false' src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}></img>
+          <img alt={item.name} draggable='false' src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}></img>
           <div className='movie-item-info'>
           <h1>{item.title}</h1>
           <div className='movie-item-cat'>

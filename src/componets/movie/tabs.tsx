@@ -5,13 +5,12 @@ import Image from 'next/image';
 
 import ArrowRight from '@/assets/images/right-solid.svg';
 import ArrowLeft from '@/assets/images/left-solid.svg';
-import DefaultImg from '@/assets/images/default.jpg'
 
 interface Props {
   castData: castType[];
 }
 
-const Tabs: React.FC<Props> = ({castData}) => {
+const Tabs: React.FC<Props> = ({castData}: {castData: any}) => {
   const [curTab, setCurTab] = useState('Overview');
 
     //====Active Tab Styles====
@@ -69,7 +68,7 @@ const Tabs: React.FC<Props> = ({castData}) => {
                 <div className="movie-page-info-card">
                   <h1>Genres</h1>
                   <div className="movie-page-info-card-nested-container">
-                  {castData[0].genres.map(item => {
+                  {castData[0].genres.map((item: {name: string, id: number}) => {
                     return (
                       <div className="movie-page-info-card-nested" key={item.id}>
                         <h3>{item.name}</h3>
@@ -91,7 +90,7 @@ const Tabs: React.FC<Props> = ({castData}) => {
                           <div key={index}>
                             {item.profile_path ? 
                               <div className="cast-item-container" key={index}>
-                              <img draggable='false' src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}></img>
+                              <img draggable='false' src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`} alt={item.name}></img>
                               <h1>{item.name}</h1>
                               <h2>{item.character}</h2>
                             </div> : null}

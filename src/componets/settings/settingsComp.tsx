@@ -73,7 +73,7 @@ export default function SettingsComp(){
         <div className="settings-inner-componet">
           {compType === 'checkbox' ?
             <div className="form-check form-switch">
-              <input name={compName} className="form-check-input" type="checkbox" onChange={(e) => HandleChange(e)} checked={formVar[compName]} role="switch"></input>
+              <input name={compName} className="form-check-input" type="checkbox" onChange={(e) => HandleChange(e)} checked={(formVar as any)[compName]} role="switch"></input>
             </div>
           : null}
           {compType === 'button' ?

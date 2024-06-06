@@ -11,7 +11,7 @@ interface Props {
   similarData: dataType[];
 }
 
-const Similar: React.FC<Props> = ({similarData}) => {
+const Similar: React.FC<Props> = ({similarData}: {similarData: any}) => {
   
   const [btnArrow, setBtnArrow] = useState(false);
 
@@ -31,7 +31,7 @@ const Similar: React.FC<Props> = ({similarData}) => {
           <div key={item.id}>
            {item.poster_path ? <div key={item.id} className="movie-page-similar-imgs">
              <Link href={`/tv/${item.id}`}>
-               <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}></img>
+               <img src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`} alt='movie poster'></img>
              </Link>
            </div> : null}
            </div>

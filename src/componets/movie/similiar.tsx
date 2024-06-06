@@ -11,7 +11,7 @@ interface Props {
   similarData: dataType[];
 }
 
-const Similar: React.FC<Props> = ({similarData}) => {
+const Similar: React.FC<Props> = ({similarData}: {similarData: any}) => {
   
   const [btnArrow, setBtnArrow] = useState(false);
 

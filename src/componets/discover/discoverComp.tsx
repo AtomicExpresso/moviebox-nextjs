@@ -68,7 +68,7 @@ export default function DiscoverComp({HandlePageNumber, HandlePrevPageNumber, sl
             <div key={index}>
             {item.poster_path ? <div className="discover-page-img-item">
               <Link href={`/movie/${item.id}`}>
-                <img draggable='false' src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}></img>
+                <img draggable='false' alt={item.name} src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}></img>
               </Link>
             </div> : null}
             </div>

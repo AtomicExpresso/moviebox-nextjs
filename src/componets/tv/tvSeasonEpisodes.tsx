@@ -72,7 +72,7 @@ export default function TvSeasonsEpisodes({season, shown, selectSeason, handleSh
                     <div key={index}>
                     {item.still_path ? <div className="season-episode-item-container">
                       <div>
-                        <img src={`https://image.tmdb.org/t/p/w500/${item.still_path}`}></img>
+                        <img src={`https://image.tmdb.org/t/p/w500/${item.still_path}`} alt="tv episode"></img>
                       </div>
                       <div>
                         <h1>S{item.season_number} E{item.episode_number} <span>-</span> {item.name}</h1>

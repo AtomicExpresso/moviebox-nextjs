@@ -9,9 +9,11 @@ export default function Footer(){
   const LinkGen = ({ArrType}: {ArrType: string[]}) => {
     return (
       <div className="footer-links-container">
-        {ArrType.map(item => {
+        {ArrType.map((item, index) => {
           return (
-            <Link href="https://google.com">{item}</Link>
+            <div key={index}>
+              <Link href="https://google.com">{item}</Link>
+            </div>
           )
         })}
       </div>

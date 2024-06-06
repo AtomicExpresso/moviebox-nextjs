@@ -91,7 +91,7 @@ const Tabs: React.FC<Props> = ({castData, data}) => {
                           <div key={index}>
                           {item.profile_path ?
                             <div className="cast-item-container">
-                            <img draggable='false' src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}></img>
+                            <img draggable='false' src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`} alt="cast member"></img>
                             <h1>{item.name}</h1>
                             <h2>{item.character}</h2>
                           </div>
