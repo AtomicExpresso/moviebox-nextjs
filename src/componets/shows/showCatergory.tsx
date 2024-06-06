@@ -7,7 +7,7 @@ import {dataType, settingFormType} from '@/typeings/types';
 import defaultsettings from "@/data/defaultsettings";
 import ArrowRight from '@/assets/images/right-solid.svg';
 import ArrowLeft from '@/assets/images/left-solid.svg';
-import rating from '@/assets/images/Rating.svg';
+import rating from '@/assets/images/rating.svg';
 import Star from '@/assets/images/star-solid.svg';
 import Fighter from '@/assets/images/fighter-solid.svg';
 import Comedy from '@/assets/images/comedy-solid.svg';
