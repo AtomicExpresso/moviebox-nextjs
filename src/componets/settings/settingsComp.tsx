@@ -1,5 +1,5 @@
 'use client'
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import gear from '@/assets/images/gear-solid.svg';
 import palette from '@/assets/images/palette-solid.svg';
@@ -16,14 +16,17 @@ export default function SettingsComp(){
   const [curSetting, setcurSetting] = useState("General");
 
   //Stores current settings in LocalStorage
-  const storeSettings = localStorage?.getItem('Settings');
+  let getSettings;
+  useEffect(() => {
+    getSettings = window?.localStorage?.getItem("user") ? localStorage.getItem('Settings') : null;
+  }, [])
 
   const [formVar, setFormVar] = useState<settingFormType>(
-  storeSettings
-  ? JSON.parse(storeSettings) as settingFormType 
+    getSettings
+  ? JSON.parse(getSettings) as settingFormType 
   : defaultsettings);
   
-  if(storeSettings){
+  if(getSettings){
     localStorage.setItem('Settings', JSON.stringify(formVar))
   }
 

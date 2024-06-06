@@ -29,7 +29,12 @@ export default function MovieCategory() {
     historyMovies: []
   })
   const [dataNewMovies, setDataNewMovies] = useState<dataType[]>([]);
-  const getSettings = window?.localStorage?.getItem("user") ? localStorage.getItem('Settings') : null
+
+  let getSettings;
+  useEffect(() => {
+    getSettings = window?.localStorage?.getItem("user") ? localStorage.getItem('Settings') : null;
+  }, []);
+
   const [settingsData, setSettingsData] = useState<settingFormType>(getSettings ? JSON.parse(getSettings) : defaultsettings)
 
 

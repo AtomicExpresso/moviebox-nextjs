@@ -10,7 +10,11 @@ export default function DiscoverComp({HandlePageNumber, HandlePrevPageNumber, sl
   const [searchData, setSearchData] = useState<dataType[]>([]);
   const [search, setSearch] = useState({query: ''});
 
-  const getSettings = window?.localStorage?.getItem("user") ? localStorage.getItem('Settings') : null
+  let getSettings;
+  useEffect(() => {
+    getSettings = window?.localStorage?.getItem("user") ? localStorage.getItem('Settings') : null;
+  }, []);
+
   const [settingsData, setSettingsData] = useState<settingFormType>(getSettings ? JSON.parse(getSettings) : defaultsettings)
 
   function HandleChange(event: any){
