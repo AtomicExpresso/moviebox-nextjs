@@ -16,7 +16,7 @@ export default function MovieComp(){
   const [data, setData] = useState<dataType[]>([]);
   const [castData, setCastData] = useState<castType[]>([]);
   const [similarData, setSimilarData] = useState<dataType[]>([]);
-  const getSettings = localStorage?.getItem('Settings');
+  const getSettings = window?.localStorage?.getItem("user") ? localStorage.getItem('Settings') : null
   const [settingsData, setSettingsData] = useState<settingFormType>(getSettings ? JSON.parse(getSettings) : defaultsettings)
 
   const pathname = usePathname();

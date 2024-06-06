@@ -8,7 +8,7 @@ import Link from "next/link";
 import defaultsettings from "@/data/defaultsettings";
 
 export default function SearchComp(){
-  const getSettings = localStorage.getItem('Settings');
+  const getSettings = window?.localStorage?.getItem("user") ? localStorage.getItem('Settings') : null
 
   const [search, setSearch] = useState({query: ''});
   const [searchData, setSearchData] = useState<dataType[]>([]);
