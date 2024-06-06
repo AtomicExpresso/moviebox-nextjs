@@ -1,9 +1,9 @@
-# MovieBox
+# 🍿MovieBox
 
 A concept streaming platform built using Nextjs, Typescript, Scss, and Bootstrap.
 Uses the TMDB API for film data
 
-## Features
+## ⚙️ Features
 
 #### - Movies & Shows page
 Page's displaying a list of movies and shows seperated by different genere's, such as Action, Animation, Documentery, Etc.
