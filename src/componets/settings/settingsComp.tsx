@@ -16,14 +16,16 @@ export default function SettingsComp(){
   const [curSetting, setcurSetting] = useState("General");
 
   //Stores current settings in LocalStorage
-  const storeSettings = localStorage.getItem('Settings');
+  const storeSettings = localStorage?.getItem('Settings');
 
   const [formVar, setFormVar] = useState<settingFormType>(
   storeSettings
   ? JSON.parse(storeSettings) as settingFormType 
   : defaultsettings);
   
-  localStorage.setItem('Settings', JSON.stringify(formVar))
+  if(storeSettings){
+    localStorage.setItem('Settings', JSON.stringify(formVar))
+  }
 
   //Handles any change that is made to the settings
   function HandleChange(event: any){
@@ -39,12 +41,14 @@ export default function SettingsComp(){
   }
 
   const ActiveStyle = {
-    backgroundColor: '#042633',
-    borderRight: 'solid 2px white'
+    backgroundColor: formVar["dark-mode"] ? '#042633' : '#dc3546',
+    borderRight: formVar["dark-mode"] ? 'solid 2px white' : 'solid 2px black',
+    color: 'white'
   }
 
   const DefaultStyle = {
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    color: formVar["dark-mode"] ? 'white' : 'black'
   }
 
   function ConstructComponet({title, compType, compName, toolTipContent}: {title: string, compType: string, compName: string, toolTipContent: string}){

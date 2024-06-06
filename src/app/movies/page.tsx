@@ -1,12 +1,10 @@
 import MovieCategory from "@/componets/films/movieCatergory";
-import Footer from "@/componets/main/footer";
 import '../sass/moviespage.scss';
 
 export default function Page() {
   return (
     <div>
       <MovieCategory/>
-      <Footer/>
     </div>
   )
 }

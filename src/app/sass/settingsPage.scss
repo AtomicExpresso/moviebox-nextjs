@@ -17,7 +17,6 @@
   }
 
   h2 {
-    color: white;
     font-size: 20px;
   }
 }
@@ -25,7 +24,7 @@
 .settings-row{
   display: flex;
   flex-direction: column;
-  margin: 50px;
+  margin: 20px;
 
   button {
     background: none;
@@ -36,7 +35,8 @@
 .settings-category-container{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  gap: 10px;
+  width: 98vw;
 }
 
 .settings-page{
@@ -68,6 +68,7 @@
 
   p {
     color: white;
+    max-width: 700px;
   }
 }
 

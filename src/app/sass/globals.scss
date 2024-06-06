@@ -22,7 +22,7 @@
   &::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px rgba(128, 128, 128, 0.329);
     border-radius: 10px;
-    background-color: #191919;
+    background-color: #000000;
   }
 
   &::-webkit-scrollbar-thumb {
@@ -93,20 +93,6 @@
   user-select: none;
   max-width: 90vw;
   overflow: hidden;
-
-  &::-webkit-scrollbar {
-    height: 10px;
-  }
-
-  &::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px rgba(128, 128, 128, 0.142);
-    border-radius: 10px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: #2c3858;
-    border-radius: 10px;
-  }
 }
 
 .item-movie-cat-title{
@@ -153,6 +139,7 @@
     font-size: 16px;
     font-weight: 600;
     text-shadow: rgb(0, 0, 0) 1px 0 10px;
+    color: white !important;
   }
 
   h2 {
@@ -174,7 +161,7 @@
     margin: 0 10px;
     position: absolute;
     bottom: 0;
-  }
+    }
 
   .movie-item-cat{
     display: flex;
@@ -227,6 +214,10 @@
   position: absolute;
   bottom: 0;
   margin: 0 20px 20px;
+
+  h1 {
+    color: white !important;
+  }
 
   .featured-movie-btn{
     display: flex;
@@ -500,6 +491,17 @@
   z-index: 500;
   background-color: #0d1017;
 
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(128, 128, 128, 0.329);
+    border-radius: 10px;
+    background-color: #191919;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #3f507f;
+    border-radius: 10px;
+  }
+
   & .nav-list-item{
     position: relative;
     border-radius: 5px;
@@ -560,6 +562,171 @@
   }
 }
 
+#root.light:not(.movie-item-info) {
+  background-color: rgb(244, 244, 244);
+
+  h1 {
+    color: black;
+  }
+
+  &::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(128, 128, 128, 0.142);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #dc3546;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px rgba(128, 128, 128, 0.329);
+    border-radius: 10px;
+    background-color: #1919193b;
+  }
+
+  .movie-page-overview{
+    color: black !important;
+  }
+
+  .movie-page-info-overview-container{
+    background-color: rgb(255, 255, 255);
+    color: black !important;
+
+    h2 {
+      color: black !important;
+    }
+  }
+
+  .item-movie-cat-title-row{
+    img {
+      filter: brightness(0) saturate(100%) invert(19%) sepia(89%) saturate(4181%) hue-rotate(354deg) brightness(100%) contrast(106%);
+    }
+  }
+
+  .movie-page-info{
+    img {
+      filter: brightness(0) saturate(100%) invert(19%) sepia(89%) saturate(4181%) hue-rotate(354deg) brightness(100%) contrast(106%);
+    }
+  }
+
+  #more-info-btn{
+    background-color: #008cff;
+    color: white;
+  }
+
+  .discover-page-title{
+    h3 {
+      color: black;
+    }
+
+    input{
+      background-color: white;
+      color: black;
+
+      &::placeholder{
+        color: black;
+      }
+    }
+  }
+
+  .search-page-title{
+    input {
+      background-color: white;
+      color: black;
+    }
+
+    img {
+      filter: brightness(0) saturate(100%) invert(0%) sepia(6%) saturate(23%) hue-rotate(234deg) brightness(94%) contrast(105%);
+    }
+
+    label {
+      color: black;
+    }
+  }
+
+  .settings-componet-container{
+    h3, p {
+      color: black;
+    }
+
+    img {
+      filter: brightness(0) saturate(100%) invert(0%) sepia(6%) saturate(23%) hue-rotate(234deg) brightness(94%) contrast(105%);
+    }
+  }
+
+  .settings-page-item{
+    img {
+      filter: brightness(0) saturate(100%) invert(0%) sepia(6%) saturate(23%) hue-rotate(234deg) brightness(94%) contrast(105%);
+    }
+  }
+
+  .tooltipz{
+    background-color: #dc3546;
+    
+    p {
+      color: white;
+    }
+  }
+
+  .movie-page{
+    h2 {
+      color: black !important;
+    }
+    p {
+      color: black !important;
+    }
+  }
+
+  .show-seasons-episode-container,
+  .show-seasons-episodes-title-container{
+    &::-webkit-scrollbar-thumb {
+      background: #dc3546 !important;
+    }
+  }
+
+  .show-seasons-episodes-container{
+    background-color: white;
+
+    h2 {
+      color: black !important;
+    }
+
+    p {
+      color: black !important;
+    }
+  }
+
+  .navbar {
+    background-color: #dc3546;
+  }
+
+  .nav-list-item{
+    &:hover{
+      background-color: #cb3342;
+    }
+  }
+
+  .footer {
+    background-color: #ffffff;
+    a {
+      color: black;
+    }
+
+    p {
+      color: black;
+    }
+
+    h1 {
+      color: rgb(0, 0, 0) !important;
+    }
+  }
+}
+
 //Handles popup
 #root.popup:not(.show-seasons-episodes-container){
   overflow-y: hidden;
@@ -614,6 +781,8 @@
   }
 
   .movie-page{
+    display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     width: 95vw;
     gap: 10px;
@@ -656,20 +825,20 @@
     }
   }
 
+  .movie-page-tabs{
+    display: none;
+  }
+
   .movie-page-info-overview-container{
-    width: 95vw;
+    width: 95vw !important;
     h1 {
       font-size: 18px;
     }
 
     p {
-      max-width: 500px;
+      max-width: 500px !important;
       font-size: 13px;
     }
-  }
-
-  .movie-page-tabs{
-    display: none;
   }
 
   //Discover page
@@ -732,7 +901,7 @@
 
   .movie-page-overview{
     p {
-      max-width: 500px !important;
+      max-width: 400px !important;
     }
   }
 
@@ -751,5 +920,9 @@
   .season-episode-item-container{
     flex-direction: column !important;
     align-items: center !important;
+  }
+
+  .image-catergoy-container{
+    display: none !important;
   }
 }

@@ -16,7 +16,7 @@ export default function MovieComp(){
   const [data, setData] = useState<dataType[]>([]);
   const [castData, setCastData] = useState<castType[]>([]);
   const [similarData, setSimilarData] = useState<dataType[]>([]);
-  const getSettings = localStorage.getItem('Settings');
+  const getSettings = localStorage?.getItem('Settings');
   const [settingsData, setSettingsData] = useState<settingFormType>(getSettings ? JSON.parse(getSettings) : defaultsettings)
 
   const pathname = usePathname();
@@ -73,7 +73,7 @@ export default function MovieComp(){
           <div className="movie-page-btn">
             <button className="btn btn-danger">Play</button>
               <Link href={`https://www.imdb.com/title/${data[0].imdb_id}/`}>
-                <button className="btn btn-light">More Info</button>
+                <button className="btn btn-light" id="more-info-btn">More Info</button>
               </Link>
           </div>
         </div>

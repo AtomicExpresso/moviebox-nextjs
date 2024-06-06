@@ -68,7 +68,7 @@ export default function TvComp(){
           <div className="movie-page-btn">
             <button className="btn btn-danger">Play</button>
               <Link href={data[0].homepage}>
-                <button className="btn btn-light">More Info</button>
+                <button className="btn btn-light" id="more-info-btn">More Info</button>
               </Link>
           </div>
         </div>

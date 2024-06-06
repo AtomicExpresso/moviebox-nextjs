@@ -1,6 +1,8 @@
 'use client'
 import Link from "next/link";
 import { usePathname } from 'next/navigation';
+import { settingFormType } from "@/typeings/types";
+import defaultsettings from "@/data/defaultsettings";
 import Image from "next/image";
 import Home from '@/assets/images/home-solid.svg';
 import Globe from '@/assets/images/globe-solid.svg';
@@ -8,14 +10,32 @@ import Film from '@/assets/images/film-solid.svg';
 import Tv from '@/assets/images/tv-solid.svg';
 import Search from '@/assets/images/search-solid.svg';
 import Gear from '@/assets/images/gear-solid.svg';
+import { useEffect, useState } from "react";
 
 export default function NavBar(){ 
   const pathname  = usePathname();
+  const getSettings = localStorage?.getItem('Settings');
+  const [settingsData, setSettingsData] = useState<settingFormType>(getSettings ? JSON.parse(getSettings) : defaultsettings);
+
+  useEffect(() => {
+    const root = document?.getElementById('root');
+
+    if(root){
+      if (settingsData['dark-mode']) {
+        root.classList.add('dark');
+        root.classList.remove('light');
+      } else {
+        root.classList.add('light');
+        root.classList.remove('dark');
+      } 
+    }
+
+  }, [settingsData])
 
   const activeStyle = {
     color: 'white',
     fontWeight: '800',
-    backgroundColor: '#3f4045'
+    backgroundColor: settingsData["dark-mode"] ? '#3f4045' : '#a32531'
   }
   const defaultStyle = {
     color: 'white',

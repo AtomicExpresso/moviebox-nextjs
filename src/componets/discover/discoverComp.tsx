@@ -87,7 +87,7 @@ export default function DiscoverComp({HandlePageNumber, HandlePrevPageNumber, sl
       <div className="discover-page-bottom">
         {Number(slicePath) > 1 ? 
           <div>
-            <button className="btn btn-light" onClick={() => HandlePrevPageNumber()}>Previous</button>
+            <button className="btn btn-light" id="more-info-btn" onClick={() => HandlePrevPageNumber()}>Previous</button>
           </div>
         : null}
         {search.query.length <= 0 ? <button onClick={() => HandlePageNumber()} className="btn btn-danger">Next</button> : null}
