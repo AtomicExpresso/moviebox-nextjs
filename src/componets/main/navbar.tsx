@@ -14,7 +14,11 @@ import { useEffect, useState } from "react";
 
 export default function NavBar(){ 
   const pathname  = usePathname();
-  const getSettings = window?.localStorage?.getItem("user") ? localStorage.getItem('Settings') : null
+  let getSettings;
+  useEffect(() => {
+    getSettings = localStorage.getItem('Settings');
+  }, [])
+
   const [settingsData, setSettingsData] = useState<settingFormType>(getSettings ? JSON.parse(getSettings) : defaultsettings);
 
   useEffect(() => {

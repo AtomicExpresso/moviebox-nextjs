@@ -29,7 +29,10 @@ export default function MovieCategory() {
     animationShows: []
   })
   const [dataNewMovies, setDataNewMovies] = useState<dataType[]>([]);
-  const getSettings = window?.localStorage?.getItem("user") ? localStorage.getItem('Settings') : null
+  let getSettings;
+  useEffect(() => {
+    getSettings = localStorage.getItem('Settings');
+  }, [])
   const [settingsData, setSettingsData] = useState<settingFormType>(getSettings ? JSON.parse(getSettings) : defaultsettings)
 
   useEffect(() => {
