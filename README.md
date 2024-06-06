@@ -3,6 +3,8 @@
 <p align="center">A concept streaming platform built using Nextjs, Typescript, Scss, and Bootstrap.
 Uses the TMDB API for film data</p>
 
+<a href="https://moviebox-nextjs-qdnyfio8x-atomics-projects-e6f17228.vercel.app/"><button>Live Preview</button></a>
+
 ![Screenshot](https://github.com/AtomicExpresso/moviebox-nextjs/assets/156177896/6a0459e9-21fb-4b0f-9073-cbe01e2be308)
 
 
