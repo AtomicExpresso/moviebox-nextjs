@@ -14,12 +14,18 @@ import { useEffect, useState } from "react";
 
 export default function NavBar(){ 
   const pathname  = usePathname();
-  let getSettings;
-  useEffect(() => {
-    getSettings = localStorage.getItem('Settings');
-  }, [])
 
-  const [settingsData, setSettingsData] = useState<settingFormType>(getSettings ? JSON.parse(getSettings) : defaultsettings);
+  const [settingsData, setSettingsData] = useState<settingFormType>(defaultsettings);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Code here will only run on the client
+      const savedSettings = localStorage.getItem('Settings');
+      if (savedSettings) {
+        setSettingsData(JSON.parse(savedSettings));
+      }
+    }
+  }, []);
 
   useEffect(() => {
     const root = document?.getElementById('root');

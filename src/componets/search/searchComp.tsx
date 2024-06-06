@@ -8,14 +8,20 @@ import Link from "next/link";
 import defaultsettings from "@/data/defaultsettings";
 
 export default function SearchComp(){
-  let getSettings;
+  const [settingsData, setSettingsData] = useState<settingFormType>(defaultsettings);
+
   useEffect(() => {
-    getSettings = localStorage.getItem('Settings');
-  }, [])
+    if (typeof window !== 'undefined') {
+      // Code here will only run on the client
+      const savedSettings = localStorage.getItem('Settings');
+      if (savedSettings) {
+        setSettingsData(JSON.parse(savedSettings));
+      }
+    }
+  }, []);
 
   const [search, setSearch] = useState({query: ''});
   const [searchData, setSearchData] = useState<dataType[]>([]);
-  const [settingsData, setSettingsData] = useState<settingFormType>(getSettings ? JSON.parse(getSettings) : defaultsettings)
 
   function HandleChange(event: any){
     let value = event.target.value;

@@ -29,11 +29,17 @@ export default function MovieCategory() {
     animationShows: []
   })
   const [dataNewMovies, setDataNewMovies] = useState<dataType[]>([]);
-  let getSettings;
+  const [settingsData, setSettingsData] = useState<settingFormType>(defaultsettings);
+
   useEffect(() => {
-    getSettings = localStorage.getItem('Settings');
-  }, [])
-  const [settingsData, setSettingsData] = useState<settingFormType>(getSettings ? JSON.parse(getSettings) : defaultsettings)
+    if (typeof window !== 'undefined') {
+      // Code here will only run on the client
+      const savedSettings = localStorage.getItem('Settings');
+      if (savedSettings) {
+        setSettingsData(JSON.parse(savedSettings));
+      }
+    }
+  }, []);
 
   useEffect(() => {
     const fetchDataAsync = async () => {

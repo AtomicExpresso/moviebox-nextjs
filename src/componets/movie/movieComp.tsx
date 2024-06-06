@@ -16,13 +16,17 @@ export default function MovieComp(){
   const [data, setData] = useState<dataType[]>([]);
   const [castData, setCastData] = useState<castType[]>([]);
   const [similarData, setSimilarData] = useState<dataType[]>([]);
+  const [settingsData, setSettingsData] = useState<settingFormType>(defaultsettings);
 
-  let getSettings;
   useEffect(() => {
-    getSettings = localStorage.getItem('Settings');
-  }, [])
-
-  const [settingsData, setSettingsData] = useState<settingFormType>(getSettings ? JSON.parse(getSettings) : defaultsettings)
+    if (typeof window !== 'undefined') {
+      // Code here will only run on the client
+      const savedSettings = localStorage.getItem('Settings');
+      if (savedSettings) {
+        setSettingsData(JSON.parse(savedSettings));
+      }
+    }
+  }, []);
 
   const pathname = usePathname();
   const slicePath = pathname.split("/")[2];

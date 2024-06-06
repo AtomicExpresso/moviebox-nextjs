@@ -15,33 +15,31 @@ export default function SettingsComp(){
 
   const [curSetting, setcurSetting] = useState("General");
 
-  //Stores current settings in LocalStorage
-  let getSettings;
-  useEffect(() => {
-    getSettings = localStorage.getItem('Settings');
-  }, [])
+  const [formVar, setFormVar] = useState<settingFormType>(defaultsettings);
 
-  const [formVar, setFormVar] = useState<settingFormType>(
-    getSettings
-  ? JSON.parse(getSettings) as settingFormType 
-  : defaultsettings);
-  
-  if(getSettings){
-    localStorage.setItem('Settings', JSON.stringify(formVar))
-  }
+    //Stores current settings in LocalStorage
+    useEffect(() => {
+      if (typeof window !== 'undefined') {
+        // Code here will only run on the client
+        const savedSettings = localStorage.getItem('Settings');
+        if (savedSettings) {
+          setFormVar(JSON.parse(savedSettings));
+        }
+      }
+    }, []);
 
   //Handles any change that is made to the settings
   function HandleChange(event: any){
     const {name, checked} = event.target;
   
-    setFormVar(prevState => ({
-      ...prevState,
-      [name]: checked
-    }))
-
-    localStorage.removeItem("Settings");
-    localStorage.setItem('Settings', JSON.stringify(formVar))
+    setFormVar(prevState => {
+      const newState = { ...prevState, [name]: checked };
+      localStorage.setItem('Settings', JSON.stringify(newState));
+      return newState;
+    })
   }
+
+  console.log(formVar)
 
   const ActiveStyle = {
     backgroundColor: formVar["dark-mode"] ? '#042633' : '#dc3546',

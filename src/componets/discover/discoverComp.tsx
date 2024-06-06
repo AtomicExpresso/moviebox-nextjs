@@ -9,13 +9,17 @@ export default function DiscoverComp({HandlePageNumber, HandlePrevPageNumber, sl
   const [data, setData] = useState<dataType[]>([]);
   const [searchData, setSearchData] = useState<dataType[]>([]);
   const [search, setSearch] = useState({query: ''});
+  const [settingsData, setSettingsData] = useState<settingFormType>(defaultsettings);
 
-  let getSettings;
   useEffect(() => {
-    getSettings = localStorage.getItem('Settings');
+    if (typeof window !== 'undefined') {
+      // Code here will only run on the client
+      const savedSettings = localStorage.getItem('Settings');
+      if (savedSettings) {
+        setSettingsData(JSON.parse(savedSettings));
+      }
+    }
   }, []);
-
-  const [settingsData, setSettingsData] = useState<settingFormType>(getSettings ? JSON.parse(getSettings) : defaultsettings)
 
   function HandleChange(event: any){
     let value = event.target.value;
