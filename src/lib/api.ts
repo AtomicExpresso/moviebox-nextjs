@@ -2,7 +2,7 @@
 const options = { method: 'GET', headers: { accept: 'application/json' } };
 const tmdbApiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY
 
-//Fetchs data from movie api
+//Fetchs data from movie api /
 const fetchData = (id: number, incAdult: boolean) => {
   return fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${tmdbApiKey}&include_adult=${incAdult}`, options)
     .then(response => response.json())
