@@ -1,3 +1,5 @@
+import 'dotenv/config'
+
 //Movie API
 const options = { method: 'GET', headers: { accept: 'application/json' } };
 const tmdbApiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY as string
