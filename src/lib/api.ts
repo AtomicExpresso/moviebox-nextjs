@@ -1,6 +1,6 @@
 //Movie API
 const options = { method: 'GET', headers: { accept: 'application/json' } };
-const tmdbApiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY
+const tmdbApiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY as string
 
 //Fetchs data from movie api /
 const fetchData = (id: number, incAdult: boolean) => {
