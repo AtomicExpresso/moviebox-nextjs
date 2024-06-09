@@ -1,9 +1,13 @@
 //Movie API
 const options = { method: 'GET', headers: { accept: 'application/json' } };
+const tmdbApiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY
+
+console.log(process.env.NEXT_PUBLIC_TMDB_API_KEY)
+
 
 //Fetchs data from movie api
 const fetchData = (id: number, incAdult: boolean) => {
-  return fetch(`https://api.themoviedb.org/3/movie/popular?api_key=5864127d28cedcf6e5a23ad38b9d9816&include_adult=${incAdult}`, options)
+  return fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${tmdbApiKey}&include_adult=${incAdult}`, options)
     .then(response => response.json())
     .then(data => {
       console.log(data);
@@ -16,7 +20,7 @@ const fetchData = (id: number, incAdult: boolean) => {
 };
 
 const fetchDataGenrea = (id: number, incAdult: boolean) => {
-  return fetch(`https://api.themoviedb.org/3/discover/movie?api_key=5864127d28cedcf6e5a23ad38b9d9816&with_genres=${id}&include_adult=${incAdult}`, options)
+  return fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${tmdbApiKey}&with_genres=${id}&include_adult=${incAdult}`, options)
     .then(response => response.json())
     .then(data => {
       console.log(data);
@@ -29,7 +33,7 @@ const fetchDataGenrea = (id: number, incAdult: boolean) => {
 };
 
 const fetchDataNewMovie = (id: number, incAdult: boolean) => {
-  return fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=5864127d28cedcf6e5a23ad38b9d9816&include_adult=${incAdult}`, options)
+  return fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${tmdbApiKey}&include_adult=${incAdult}`, options)
     .then(response => response.json())
     .then(data => {
       console.log(data);
@@ -42,7 +46,7 @@ const fetchDataNewMovie = (id: number, incAdult: boolean) => {
 };
 
 const searchMovie = (id: number, incAdult: boolean) => {
-  return fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=5864127d28cedcf6e5a23ad38b9d9816&include_adult=${incAdult}`, options)
+  return fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${tmdbApiKey}&include_adult=${incAdult}`, options)
   .then(response => response.json())
   .then(data => {
     console.log(data);
@@ -55,7 +59,7 @@ const searchMovie = (id: number, incAdult: boolean) => {
 }
 
 const getCast = (id: number) => {
-  return fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=5864127d28cedcf6e5a23ad38b9d9816&language=en-US&append_to_response=credits`, options)
+  return fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${tmdbApiKey}&language=en-US&append_to_response=credits`, options)
   .then(response => response.json())
   .then(data => {
     console.log(data);
@@ -68,7 +72,7 @@ const getCast = (id: number) => {
 }
 
 const getSimilarFilm = (id: number, incAdult: boolean) => {
-  return fetch(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=5864127d28cedcf6e5a23ad38b9d9816&&include_adult=${incAdult}`, options)
+  return fetch(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${tmdbApiKey}&&include_adult=${incAdult}`, options)
   .then(response => response.json())
   .then(data => {
     console.log(data);
@@ -81,7 +85,7 @@ const getSimilarFilm = (id: number, incAdult: boolean) => {
 }
 
 const searchByPage = (id: number, incAdult: boolean) => {
-  return fetch(`https://api.themoviedb.org/3/discover/movie?api_key=5864127d28cedcf6e5a23ad38b9d9816&page=${id}&include_adult=${incAdult}`, options)
+  return fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${tmdbApiKey}&page=${id}&include_adult=${incAdult}`, options)
   .then(response => response.json())
   .then(data => {
     console.log(data);
@@ -94,7 +98,7 @@ const searchByPage = (id: number, incAdult: boolean) => {
 }
 
 const searchByName = (id: string, incAdult: boolean) => {
-  return fetch(`https://api.themoviedb.org/3/search/movie?query=${id}&api_key=5864127d28cedcf6e5a23ad38b9d9816&include_adult=${incAdult}`, options)
+  return fetch(`https://api.themoviedb.org/3/search/movie?query=${id}&api_key=${tmdbApiKey}&include_adult=${incAdult}`, options)
   .then(response => response.json())
   .then(data => {
     console.log(data);
@@ -108,7 +112,7 @@ const searchByName = (id: string, incAdult: boolean) => {
 //===================
 //TV SHOWS
 const fetchDataTVGenrea = (id: number, incAdult: boolean) => {
-  return fetch(`https://api.themoviedb.org/3/discover/tv?api_key=5864127d28cedcf6e5a23ad38b9d9816&with_genres=${id}&include_adult=${incAdult}`, options)
+  return fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${tmdbApiKey}&with_genres=${id}&include_adult=${incAdult}`, options)
     .then(response => response.json())
     .then(data => {
       console.log(data);
@@ -121,7 +125,7 @@ const fetchDataTVGenrea = (id: number, incAdult: boolean) => {
 };
 
 const fetchDataTrendingTV = (id: number, incAdult: boolean) => {
-  return fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=5864127d28cedcf6e5a23ad38b9d9816&include_adult=${incAdult}`, options)
+  return fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${tmdbApiKey}&include_adult=${incAdult}`, options)
     .then(response => response.json())
     .then(data => {
       console.log(data);
@@ -134,7 +138,7 @@ const fetchDataTrendingTV = (id: number, incAdult: boolean) => {
 };
 
 const fetchDataTVSeries = (id: number) => {
-  return fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=5864127d28cedcf6e5a23ad38b9d9816`, options)
+  return fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${tmdbApiKey}`, options)
     .then(response => response.json())
     .then(data => {
       console.log(data);
@@ -147,7 +151,7 @@ const fetchDataTVSeries = (id: number) => {
 };
 
 const fetchDataSimilarTVSeries = (id: number, incAdult: boolean) => {
-  return fetch(`https://api.themoviedb.org/3/tv/${id}/similar?api_key=5864127d28cedcf6e5a23ad38b9d9816&include_adult=${incAdult}`, options)
+  return fetch(`https://api.themoviedb.org/3/tv/${id}/similar?api_key=${tmdbApiKey}&include_adult=${incAdult}`, options)
     .then(response => response.json())
     .then(data => {
       console.log(data);
@@ -160,7 +164,7 @@ const fetchDataSimilarTVSeries = (id: number, incAdult: boolean) => {
 };
 
 const fetchDataCreditsTV = (id: number) => {
-  return fetch(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=5864127d28cedcf6e5a23ad38b9d9816`, options)
+  return fetch(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${tmdbApiKey}`, options)
     .then(response => response.json())
     .then(data => {
       console.log(data);
@@ -173,7 +177,7 @@ const fetchDataCreditsTV = (id: number) => {
 };
 
 const fetchDataSeasonsTV = (id: number) => {
-  return fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=5864127d28cedcf6e5a23ad38b9d9816&language=en-US&append_to_response=episode_groups`, options)
+  return fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${tmdbApiKey}&language=en-US&append_to_response=episode_groups`, options)
     .then(response => response.json())
     .then(data => {
       console.log(data);
@@ -186,7 +190,7 @@ const fetchDataSeasonsTV = (id: number) => {
 };
 
 const fetchDataSeasonEpisodeTV = (id: number, seasonId: number) => {
-  return fetch(`https://api.themoviedb.org/3/tv/${id}/season/${seasonId}?api_key=5864127d28cedcf6e5a23ad38b9d9816`, options)
+  return fetch(`https://api.themoviedb.org/3/tv/${id}/season/${seasonId}?api_key=${tmdbApiKey}`, options)
     .then(response => response.json())
     .then(data => {
       console.log(data);
