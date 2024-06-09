@@ -2,7 +2,9 @@ import 'dotenv/config'
 
 //Movie API
 const options = { method: 'GET', headers: { accept: 'application/json' } };
-const tmdbApiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY as string
+const tmdbApiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY
+
+console.log(tmdbApiKey)
 
 //Fetchs data from movie api /
 const fetchData = (id: number, incAdult: boolean) => {

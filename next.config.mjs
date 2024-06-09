@@ -2,7 +2,7 @@
 
 const nextConfig = {
   env: {
-    secretKey: process.env.NEXT_PUBLIC_TMDB_API_KEY,
+    NEXT_PUBLIC_TMDB_API_KEY: process.env.NEXT_PUBLIC_TMDB_API_KEY,
  },
 };
 
