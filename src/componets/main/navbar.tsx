@@ -11,8 +11,11 @@ import Tv from '@/assets/images/tv-solid.svg';
 import Search from '@/assets/images/search-solid.svg';
 import Gear from '@/assets/images/gear-solid.svg';
 import { useEffect, useState } from "react";
+import { useAuthContext } from "@/hooks/useAuthContext";
 
 export default function NavBar(){ 
+  const {state} = useAuthContext()
+
   const pathname  = usePathname();
 
   const [settingsData, setSettingsData] = useState<settingFormType>(defaultsettings);
@@ -53,7 +56,6 @@ export default function NavBar(){
   }
 
   function LinkCreation({Title, Path, Img, Identify}: {Title: string, Path: string, Img: string, Identify:string}){
-
     return (
       <div id={Identify} className="nav-list-item" style={pathname === Path ? activeStyle : defaultStyle}>
         <Link href={Path}>
@@ -65,14 +67,16 @@ export default function NavBar(){
 
   return (
     <div className="navbar">
-      <ul>
-        <LinkCreation Title="home" Path="/" Img={Home} Identify="nav-home"/>
-        <LinkCreation Title="movies" Path="/movies" Img={Film} Identify="nav-film"/>
-        <LinkCreation Title="shows" Path="/shows" Img={Tv} Identify="nav-tv"/>
-        <LinkCreation Title="discover" Path="/discover/movies/1" Img={Globe} Identify="nav-globe"/>
-        <LinkCreation Title="search" Path="/search" Img={Search} Identify="nav-search"/>
-        <LinkCreation Title="settings" Path="/settings" Img={Gear} Identify="nav-settings"/>
-      </ul>
+      {state.user || state.isGuest ? 
+        <ul>
+          <LinkCreation Title="home" Path="/" Img={Home} Identify="nav-home"/>
+          <LinkCreation Title="movies" Path="/movies" Img={Film} Identify="nav-film"/>
+          <LinkCreation Title="shows" Path="/shows" Img={Tv} Identify="nav-tv"/>
+          <LinkCreation Title="discover" Path="/discover/movies/1" Img={Globe} Identify="nav-globe"/>
+          <LinkCreation Title="search" Path="/search" Img={Search} Identify="nav-search"/>
+          <LinkCreation Title="settings" Path="/settings" Img={Gear} Identify="nav-settings"/>
+        </ul> 
+      : null}
     </div>
   )
 }

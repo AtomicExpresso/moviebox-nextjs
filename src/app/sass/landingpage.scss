@@ -1,0 +1,117 @@
+.landing-page{
+  width: 100% !important;
+}
+
+.landing-page-main-sections{
+  width: 100% !important;
+  background-image: url(../../assets/backgrounds/landing-page-bg.png);
+  background-size: cover;
+  box-shadow: inset 0 0 25em 1em #000; //veginette effect for background
+}
+
+.landing-nav{
+  display: flex;
+  justify-content: space-between;
+  width: 100% !important;
+  padding: 10px 20px;
+  background-color: #00000037;
+  backdrop-filter: blur(1px);
+}
+
+.landing-main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 10vh 10px 20vh;
+
+  h1 {
+    font-size: 34px;
+    font-weight: bold;
+  }
+
+  p {
+    color: white;
+    font-size: 26px;
+  }
+}
+
+.landing-btn{
+  display: flex;
+  gap: 20px;
+}
+
+.landing-second-section{
+  background-color: black;
+  padding: 10px 30px;
+  display: flex;
+  justify-content: space-between;
+
+  img {
+    width: 280px;
+    height: 280px;
+  }
+}
+
+.landing-second-section-text{
+  margin: 10px 0;
+  color: white;
+
+  p {
+    max-width: 70%
+  }
+}
+
+.landing-third-section{
+  display: flex;
+  flex-direction: column;
+  padding: 10px 30px;
+  background-color: #000;
+}
+
+.landing-faq-list{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.faq-list-item{
+  width: 100%;
+  background: #1A1A1A;
+  border-radius: 5px;
+
+  button {
+    background: none;
+    border: none;
+    padding: 10px 0;
+    text-align: left;
+    width: 100%;
+
+    p {
+      color: white;
+      max-width: 90%;
+      margin: 0 10px;
+    }
+
+    h1 {
+      font-size: 20px;
+      margin: 0 10px;
+    }
+  }
+}
+
+.faq-content{
+  hr {
+    border: solid 2px black;
+    border-radius: 10px;
+  }
+}
+
+.landing-third-section-title{
+  h1 {
+    text-align: center;
+  }
+
+  padding: 10px 0px 30px;
+}

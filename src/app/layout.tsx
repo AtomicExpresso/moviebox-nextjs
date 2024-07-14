@@ -4,6 +4,7 @@ import "./sass/globals.scss";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from "@/componets/main/navbar";
 import Footer from "@/componets/main/footer";
+import { AuthContextProvider } from "@/context/AuthContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,11 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className} id="root">
-        <NavBar/>
-        <div>
-          {children}
-          <Footer/>
-        </div>
+        <AuthContextProvider>
+          <NavBar/>
+          <div className="layout">
+            {children}
+            <Footer/>
+          </div>
+        </AuthContextProvider>
       </body>
     </html>
   );
