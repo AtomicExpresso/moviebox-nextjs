@@ -37,6 +37,8 @@ The project was built with resposnvie design ensuring flexability accross differ
 - Node.js
 
 ## Quickstart 👍
+If you want to host this project locally, you will need to register your own API key on the <a href="https://www.themoviedb.org/?language=en-US">TMDB api website</a> (It's free at the moment)
+
 1 ) Clone this repo locally:
 
 ```
@@ -44,13 +46,17 @@ git clone https://github.com/AtomicExpresso/moviebox-nextjs.git
 ```
 
 2 ) Setting up the project:
-
 ```
 cd moviebox-nextjs
 Npm install
 ```
+3) Create a .env file in the src folder and put your api key in it
 
-3 ) Setting up dev server:
+```
+NEXT_PUBLIC_TMDB_API_KEY = yourkey
+```
+
+4 ) Setting up dev server:
 
 ```
 Npm run dev
