@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { dataType, settingFormType } from "@/typeings/types";
 import { searchByPage, searchByName } from "@/lib/api";
+import { useSettingsContext } from "@/hooks/useSettingsContext";
 import Link from "next/link";
 import defaultsettings from "@/data/defaultsettings";
 
@@ -9,17 +10,7 @@ export default function DiscoverComp({HandlePageNumber, HandlePrevPageNumber, sl
   const [data, setData] = useState<dataType[]>([]);
   const [searchData, setSearchData] = useState<dataType[]>([]);
   const [search, setSearch] = useState({query: ''});
-  const [settingsData, setSettingsData] = useState<settingFormType>(defaultsettings);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // Code here will only run on the client
-      const savedSettings = localStorage.getItem('Settings');
-      if (savedSettings) {
-        setSettingsData(JSON.parse(savedSettings));
-      }
-    }
-  }, []);
+  const settingsData = useSettingsContext()
 
   function HandleChange(event: any){
     let value = event.target.value;

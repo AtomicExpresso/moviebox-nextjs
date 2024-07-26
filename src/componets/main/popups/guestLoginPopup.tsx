@@ -19,7 +19,7 @@ export default function GuestLoginPopup({callback}: {callback: Function}) {
           className="btn btn-light"
           onClick={() => handleDispatch()}
         >
-          Let's go
+          Let&apos;s go
         </button>
         <button 
           className="btn btn-danger" 

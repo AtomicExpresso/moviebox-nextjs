@@ -5,7 +5,6 @@ import {dataType, castType, settingFormType} from '@/typeings/types';
 import { usePathname } from 'next/navigation';
 import { useSettingsContext } from "@/hooks/useSettingsContext";
 
-import defaultsettings from "@/data/defaultsettings";
 import Tabs from "./tabs";
 import Similar from "./similiar";
 import TvSeasons from "./tvSeasons";

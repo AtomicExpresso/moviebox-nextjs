@@ -28,7 +28,7 @@ export default function MyProfileMain() {
           </div>
       </div>
       <div className="myprofile-list-section">
-        <h1>My List's</h1>
+        <h1>My List&apos;s</h1>
         <hr></hr>
         <div className="myprofile-list-section-items">
           {state.user ?

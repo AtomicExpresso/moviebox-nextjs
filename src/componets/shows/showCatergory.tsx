@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState, useRef, useEffect } from "react";
 import {fetchDataTrendingTV, fetchDataTVGenrea} from '@/lib/api';
 import {dataType, settingFormType} from '@/typeings/types';
-import defaultsettings from "@/data/defaultsettings";
+import { useSettingsContext } from "@/hooks/useSettingsContext";
 import ArrowRight from '@/assets/images/right-solid.svg';
 import ArrowLeft from '@/assets/images/left-solid.svg';
 import rating from '@/assets/images/rating.svg';
@@ -29,17 +29,8 @@ export default function MovieCategory() {
     animationShows: []
   })
   const [dataNewMovies, setDataNewMovies] = useState<dataType[]>([]);
-  const [settingsData, setSettingsData] = useState<settingFormType>(defaultsettings);
+  const settingsData = useSettingsContext()
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // Code here will only run on the client
-      const savedSettings = localStorage.getItem('Settings');
-      if (savedSettings) {
-        setSettingsData(JSON.parse(savedSettings));
-      }
-    }
-  }, []);
 
   useEffect(() => {
     const fetchDataAsync = async () => {

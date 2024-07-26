@@ -5,20 +5,10 @@ import { searchByName } from "@/lib/api";
 import searchIcon from "@/assets/images/search-solid.svg";
 import Image from "next/image";
 import Link from "next/link";
-import defaultsettings from "@/data/defaultsettings";
+import { useSettingsContext } from "@/hooks/useSettingsContext";
 
 export default function SearchComp(){
-  const [settingsData, setSettingsData] = useState<settingFormType>(defaultsettings);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // Code here will only run on the client
-      const savedSettings = localStorage.getItem('Settings');
-      if (savedSettings) {
-        setSettingsData(JSON.parse(savedSettings));
-      }
-    }
-  }, []);
+  const settingsData = useSettingsContext()
 
   const [search, setSearch] = useState({query: ''});
   const [searchData, setSearchData] = useState<dataType[]>([]);

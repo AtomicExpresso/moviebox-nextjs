@@ -19,6 +19,8 @@ import Scifi from '@/assets/images/rocket-solid.svg';
 import History from '@/assets/images/book-solid.svg';
 import FeaturedImage from "./featuredImage";
 
+import { useSettingsContext } from "@/hooks/useSettingsContext";
+
 export default function MovieCategory() {
   const [data, setData] = useState<dataType[]>([]);
   const [movieGenreData, setMovieGenreDate] = useState({
@@ -30,18 +32,7 @@ export default function MovieCategory() {
     historyMovies: []
   })
   const [dataNewMovies, setDataNewMovies] = useState<dataType[]>([]);
-  const [settingsData, setSettingsData] = useState<settingFormType>(defaultsettings);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // Code here will only run on the client
-      const savedSettings = localStorage.getItem('Settings');
-      if (savedSettings) {
-        setSettingsData(JSON.parse(savedSettings));
-      }
-    }
-  }, []);
-
+  const settingsData = useSettingsContext()
 
   useEffect(() => {
     const fetchDataAsync = async () => {
