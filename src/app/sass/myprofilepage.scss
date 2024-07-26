@@ -1,0 +1,95 @@
+.myprofile-main-section{
+  width: 100%;
+  height: 100%;
+}
+
+.myprofile-banner{
+  background-image: url(../../assets/backgrounds/default-profile-banner.png);
+  width: 100%;
+  height: 20vh;
+  position: relative;
+}
+
+.myprofile-welcome-image{
+  padding: 0 8%;
+
+  img {
+    position: absolute;
+    left: 3%;
+    top: 25%;
+    bottom: 0%;
+    margin-bottom: 3%;
+    width: 130px;
+    border-radius: 50%;
+    border: solid 2px rgba(255, 255, 255, 0.187);
+  }
+}
+
+.myprofile-welcome{
+  font-size: 30px;
+}
+
+.myprofile-welcome-section{
+  display: flex;
+  width: 100%;
+  position: relative;
+  margin: 30px 15%;
+}
+
+.myprofile-list-section{
+  margin: 20px;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.158);
+  padding: 20px;
+  border-radius: 10px;
+
+  hr {
+    border: solid 1px white;
+    width: 98%;
+  }
+}
+
+.myprofile-list-section-items{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 30px 20px;
+  color: white;
+
+  img {
+    filter: brightness(0) saturate(100%) invert(99%) sepia(19%) saturate(2%) hue-rotate(14deg) brightness(105%) contrast(100%);
+  }
+}
+
+.myprofile-list-section-item{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+
+  button {
+    background: none;
+    border: none;
+    color: white;
+  }
+
+  h2 {
+    font-size: 25px;
+  }
+
+  img {
+    height: 25px;
+    width: 25px;
+    margin: 0 0 10px 0;
+  }
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.082);
+  }
+
+  &:active{
+    background-color: rgba(255, 255, 255, 0.116);
+  }
+}

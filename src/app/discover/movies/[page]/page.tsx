@@ -1,7 +1,7 @@
 'use client'
-import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { usePathname } from 'next/navigation';
+import CheckAccountStatusComponet from '@/componets/main/checkAccountStatusComponet';
 
 import DiscoverComp from "@/componets/discover/discoverComp";
 import '../../../sass/discoverpage.scss';
@@ -22,6 +22,7 @@ export default function Page() {
   return (
     <div>
       <DiscoverComp HandlePageNumber={HandlePageNumber} slicePath={slicepath} HandlePrevPageNumber={HandlePrevPageNumber}/>
+      <CheckAccountStatusComponet/>
     </div>
   )
 };

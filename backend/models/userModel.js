@@ -33,6 +33,8 @@ userSchema.statics.signUp = async function(username, email, password) {
     throw new Error('Please put a stronger password')
   }
 
+  const passwordToString = password.toString()
+
   //Check if account exists
   const exists = await this.findOne({email});
   const checkUsername = await this.findOne({username});
@@ -45,8 +47,8 @@ userSchema.statics.signUp = async function(username, email, password) {
   }
 
   //Hash password
-  const salt = bcrypt.genSalt(10);
-  const hash = bcrypt.hash(password, salt);
+  const salt = await bcrypt.genSalt(10);
+  const hash = await bcrypt.hash(passwordToString, salt);
 
   const user = await this.create({username, email, password: hash});
 
@@ -54,20 +56,20 @@ userSchema.statics.signUp = async function(username, email, password) {
 }
 
 //Login static method
-userSchema.statics.LogIn = async function (username, password) {
+userSchema.statics.logIn = async function (username, password) {
   if(!username || !password){
     throw new Error('Please fill in the required fields')
   }
 
-  const user = this.findOne({username});
-
+  const user = await this.findOne({username});
+ 
   if(!user){
     throw new Error('Incorrect username')
   }
   if(!user.password){
     throw new Error('Incorrect password')
   }
-
+ 
   const matchPassword = await bcrypt.compare(password, user.password);
 
   if(!matchPassword){

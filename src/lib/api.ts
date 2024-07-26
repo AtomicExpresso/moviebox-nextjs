@@ -1,206 +1,223 @@
-import 'dotenv/config'
+import 'dotenv/config';
+//Fetches from TMDB Api
+//This is used for getting movie data
 
 //Movie API
 const options = { method: 'GET', headers: { accept: 'application/json' } };
 const tmdbApiKey = process.env.NEXT_PUBLIC_TMDB_API_KEY
 
-console.log(tmdbApiKey)
+//Fetch most popular movies
+const fetchData = async (id: number, incAdult: boolean) => {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${tmdbApiKey}&include_adult=${incAdult}`, options);
 
-//Fetchs data from movie api /
-const fetchData = (id: number, incAdult: boolean) => {
-  return fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${tmdbApiKey}&include_adult=${incAdult}`, options)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      return data; // Return the data to be used elsewhere if needed
-    })
-    .catch(error => {
-      console.error(error);
-      throw error; // Rethrow the error for error handling elsewhere if needed
-    });
+    const data = await response.json();
+
+    return data
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 };
 
-const fetchDataGenrea = (id: number, incAdult: boolean) => {
-  return fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${tmdbApiKey}&with_genres=${id}&include_adult=${incAdult}`, options)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      return data; // Return the data to be used elsewhere if needed
-    })
-    .catch(error => {
-      console.error(error);
-      throw error; // Rethrow the error for error handling elsewhere if needed
-    });
+//Fetch by movie genera
+const fetchDataGenrea = async (id: number, incAdult: boolean) => {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${tmdbApiKey}&with_genres=${id}&include_adult=${incAdult}`, options);
+
+    const data = await response.json();
+
+    return data
+  } catch(error) {
+    console.error(error);
+    throw error;
+  }
 };
 
-const fetchDataNewMovie = (id: number, incAdult: boolean) => {
-  return fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${tmdbApiKey}&include_adult=${incAdult}`, options)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      return data; // Return the data to be used elsewhere if needed
-    })
-    .catch(error => {
-      console.error(error);
-      throw error; // Rethrow the error for error handling elsewhere if needed
-    });
+//Fetch latest new movies
+const fetchDataNewMovie = async (id: number, incAdult: boolean) => {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/upcoming?api_key=${tmdbApiKey}&include_adult=${incAdult}`, options);
+
+    const data = await response.json()
+
+    return data
+  } catch (error){
+    console.error(error);
+    throw error;
+  }
 };
 
-const searchMovie = (id: number, incAdult: boolean) => {
-  return fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${tmdbApiKey}&include_adult=${incAdult}`, options)
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    return data; // Return the data to be used elsewhere if needed
-  })
-  .catch(error => {
+//Fetch a specific movie, this is used to display the movie data when a user clicks on a movie
+const searchMovie = async (id: number, incAdult: boolean) => {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${tmdbApiKey}&include_adult=${incAdult}`, options);
+
+    const data = await response.json();
+
+    return data
+  } catch (error){
     console.error(error);
-    throw error; // Rethrow the error for error handling elsewhere if needed
-  });
+    throw error;
+  }
 }
 
-const getCast = (id: number) => {
-  return fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${tmdbApiKey}&language=en-US&append_to_response=credits`, options)
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    return data; // Return the data to be used elsewhere if needed
-  })
-  .catch(error => {
+//Fetch the cast from the movie
+const getCast = async (id: number) => {
+
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${tmdbApiKey}&language=en-US&append_to_response=credits`, options);
+
+    const data = await response.json();
+
+    return data
+  } catch (error){
     console.error(error);
-    throw error; // Rethrow the error for error handling elsewhere if needed
-  });
+    throw error;
+  }
 }
 
-const getSimilarFilm = (id: number, incAdult: boolean) => {
-  return fetch(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${tmdbApiKey}&&include_adult=${incAdult}`, options)
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    return data; // Return the data to be used elsewhere if needed
-  })
-  .catch(error => {
+//Fetch similar films
+const getSimilarFilm = async (id: number, incAdult: boolean) => {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${tmdbApiKey}&&include_adult=${incAdult}`, options);
+
+    const data = await response.json();
+
+    return data
+  } catch (error){
     console.error(error);
-    throw error; // Rethrow the error for error handling elsewhere if needed
-  });
+    throw error;
+  }
 }
 
-const searchByPage = (id: number, incAdult: boolean) => {
-  return fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${tmdbApiKey}&page=${id}&include_adult=${incAdult}`, options)
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    return data; // Return the data to be used elsewhere if needed
-  })
-  .catch(error => {
+//Fetch pages of movies
+const searchByPage = async (id: number, incAdult: boolean) => {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${tmdbApiKey}&page=${id}&include_adult=${incAdult}`, options)
+
+    const data = await response.json();
+    
+    return data
+  } catch (error) {
     console.error(error);
-    throw error; // Rethrow the error for error handling elsewhere if needed
-  });
+    throw error;
+  }
 }
 
-const searchByName = (id: string, incAdult: boolean) => {
-  return fetch(`https://api.themoviedb.org/3/search/movie?query=${id}&api_key=${tmdbApiKey}&include_adult=${incAdult}`, options)
-  .then(response => response.json())
-  .then(data => {
-    console.log(data);
-    return data; // Return the data to be used elsewhere if needed
-  })
-  .catch(error => {
+//Search a movie by its name
+const searchByName = async (id: string, incAdult: boolean) => {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${id}&api_key=${tmdbApiKey}&include_adult=${incAdult}`, options);
+
+    const data = await response.json();
+
+    return data
+  } catch (error){
     console.error(error);
-    throw error; // Rethrow the error for error handling elsewhere if needed
-  });
+    throw error;
+  }
 }
+
 //===================
 //TV SHOWS
-const fetchDataTVGenrea = (id: number, incAdult: boolean) => {
-  return fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${tmdbApiKey}&with_genres=${id}&include_adult=${incAdult}`, options)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      return data; // Return the data to be used elsewhere if needed
-    })
-    .catch(error => {
-      console.error(error);
-      throw error; // Rethrow the error for error handling elsewhere if needed
-    });
+
+//Fetch tv show by its genera
+const fetchDataTVGenrea = async (id: number, incAdult: boolean) => {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/discover/tv?api_key=${tmdbApiKey}&with_genres=${id}&include_adult=${incAdult}`, options)
+
+    const data = await response.json();
+
+    return data
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 };
 
-const fetchDataTrendingTV = (id: number, incAdult: boolean) => {
-  return fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${tmdbApiKey}&include_adult=${incAdult}`, options)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      return data; // Return the data to be used elsewhere if needed
-    })
-    .catch(error => {
-      console.error(error);
-      throw error; // Rethrow the error for error handling elsewhere if needed
-    });
+//Fetch trending shows
+const fetchDataTrendingTV = async (id: number, incAdult: boolean) => {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/trending/tv/day?api_key=${tmdbApiKey}&include_adult=${incAdult}`, options)
+
+    const data = response.json()
+
+    return data
+  } catch(error){
+    console.error(error);
+    throw error;
+  }
 };
 
-const fetchDataTVSeries = (id: number) => {
-  return fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${tmdbApiKey}`, options)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      return data; // Return the data to be used elsewhere if needed
-    })
-    .catch(error => {
-      console.error(error);
-      throw error; // Rethrow the error for error handling elsewhere if needed
-    });
+//Fetch specifc series
+const fetchDataTVSeries = async (id: number) => {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${tmdbApiKey}`, options)
+
+    const data = response.json()
+
+    return data
+  } catch(error){
+    console.error(error);
+    throw error;
+  }
 };
 
-const fetchDataSimilarTVSeries = (id: number, incAdult: boolean) => {
-  return fetch(`https://api.themoviedb.org/3/tv/${id}/similar?api_key=${tmdbApiKey}&include_adult=${incAdult}`, options)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      return data; // Return the data to be used elsewhere if needed
-    })
-    .catch(error => {
-      console.error(error);
-      throw error; // Rethrow the error for error handling elsewhere if needed
-    });
+//Fetch simlar tv shows
+const fetchDataSimilarTVSeries = async (id: number, incAdult: boolean) => {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/tv/${id}/similar?api_key=${tmdbApiKey}&include_adult=${incAdult}`, options)
+
+    const data = response.json()
+
+    return data
+  } catch(error){
+    console.error(error);
+    throw error;
+  }
 };
 
-const fetchDataCreditsTV = (id: number) => {
-  return fetch(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${tmdbApiKey}`, options)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      return data; // Return the data to be used elsewhere if needed
-    })
-    .catch(error => {
-      console.error(error);
-      throw error; // Rethrow the error for error handling elsewhere if needed
-    });
+//Find the credits of the show
+const fetchDataCreditsTV = async (id: number) => {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${tmdbApiKey}`, options)
+
+    const data = response.json()
+
+    return data
+  } catch(error){
+    console.error(error);
+    throw error;
+  }
 };
 
-const fetchDataSeasonsTV = (id: number) => {
-  return fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${tmdbApiKey}&language=en-US&append_to_response=episode_groups`, options)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      return data; // Return the data to be used elsewhere if needed
-    })
-    .catch(error => {
-      console.error(error);
-      throw error; // Rethrow the error for error handling elsewhere if needed
-    });
+//Find all the seasons of the show
+const fetchDataSeasonsTV = async (id: number) => {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/tv/${id}?api_key=${tmdbApiKey}&language=en-US&append_to_response=episode_groups`, options)
+
+    const data = response.json()
+
+    return data
+  } catch(error){
+    console.error(error);
+    throw error;
+  }
 };
 
-const fetchDataSeasonEpisodeTV = (id: number, seasonId: number) => {
-  return fetch(`https://api.themoviedb.org/3/tv/${id}/season/${seasonId}?api_key=${tmdbApiKey}`, options)
-    .then(response => response.json())
-    .then(data => {
-      console.log(data);
-      return data; // Return the data to be used elsewhere if needed
-    })
-    .catch(error => {
-      console.error(error);
-      throw error; // Rethrow the error for error handling elsewhere if needed
-    });
+//Find the info about a specifc episode from the show
+const fetchDataSeasonEpisodeTV = async (id: number, seasonId: number) => {
+  try {
+    const response = await fetch(`https://api.themoviedb.org/3/tv/${id}/season/${seasonId}?api_key=${tmdbApiKey}`, options)
+
+    const data = response.json()
+
+    return data
+  } catch(error){
+    console.error(error);
+    throw error;
+  }
 };
 
 

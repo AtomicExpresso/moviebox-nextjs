@@ -1,0 +1,56 @@
+.signup-main{
+  width: 100% !important;
+  background-image: url(../../assets/backgrounds/landing-page-bg.png);
+  background-size: cover;
+  box-shadow: inset 0 0 25em 1em #000; //veginette effect for background
+  padding: 20px;
+}
+
+.signup-form{
+  width: 70%;
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    input {
+      border: none;
+      background: rgb(39, 39, 39);
+      color: white;
+
+      &:active{
+        background: rgb(39, 39, 39);
+        color: white;
+      }
+
+      &:focus{
+        background: rgb(39, 39, 39);
+        color: white;
+      }
+
+      &::placeholder{
+        color: rgba(255, 255, 255, 0.468);
+      }
+    }
+
+    button {
+      width: 80%;
+      margin: 20px auto;
+    }
+  }
+}
+
+.signup-main-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  color: white;
+  background-color: #000000f2;
+  border-radius: 10px;
+  padding: 10px;
+  width: 40%;
+  border: solid 2px rgba(255, 255, 255, 0.299);
+  gap: 20px;
+}

@@ -1,38 +1,36 @@
 'use client'
 import { useEffect, useState } from "react";
 import {searchMovie, getCast, getSimilarFilm} from '@/lib/api';
-import {dataType, castType, settingFormType} from '@/typeings/types';
-import defaultsettings from "@/data/defaultsettings";
+import {dataType, castType} from '@/typeings/types';
+import { useSettingsContext } from "@/hooks/useSettingsContext";
 import { usePathname } from 'next/navigation';
+import { useGlobalPopups } from "@/hooks/useGlobalPopups";
+import useOutsideClick from "@/hooks/useOutsideClick";
+
 import Tabs from "@/componets/movie/tabs";
 import Similar from "@/componets/movie/similiar";
 
 import Link from "next/link";
 import Star from "@/assets/images/star-solid.svg";
 import Image from "next/image";
+import bars from "@/assets/images/icons/bars-solid.svg"
 
 export default function MovieComp(){
   //Data states, Holds the JSON data fetched from the api
   const [data, setData] = useState<dataType[]>([]);
   const [castData, setCastData] = useState<castType[]>([]);
   const [similarData, setSimilarData] = useState<dataType[]>([]);
-  const [settingsData, setSettingsData] = useState<settingFormType>(defaultsettings);
+  const [movieListPopup, setMovieListPopup] = useState(false);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      // Code here will only run on the client
-      const savedSettings = localStorage.getItem('Settings');
-      if (savedSettings) {
-        setSettingsData(JSON.parse(savedSettings));
-      }
-    }
-  }, []);
-
+  const settingsData = useSettingsContext();
+  const {popupState, dispatchPopup} = useGlobalPopups();
+  
   const pathname = usePathname();
   const slicePath = pathname.split("/")[2];
 
-  //In the json doc, Runtime is counted in minutes, so this code gets the
-  //Amount of hours and minutes from it
+  const movieListRef = useOutsideClick(() => setMovieListPopup(false)); //Custom hook that detects if a click as made outside of the element, it takes a callback function as an argument 
+
+  //In the json doc for tmdb api, Runtime is counted in minutes, so this code gets the Amount of hours and minutes from it
   const ChangeTime = (time: number) => {
     let convert = Math.floor(time / 60)
     let minute = Math.floor(time % 60)
@@ -80,10 +78,31 @@ export default function MovieComp(){
           </div>
           <p>{data[0].overview}</p>
           <div className="movie-page-btn">
-            <button className="btn btn-danger">Play</button>
-              <Link href={`https://www.imdb.com/title/${data[0].imdb_id}/`}>
-                <button className="btn btn-light" id="more-info-btn">More Info</button>
-              </Link>
+            <button className="btn btn-danger">
+              Play
+            </button>
+            <Link href={`https://www.imdb.com/title/${data[0].imdb_id}/`}>
+              <button className="btn btn-light" id="more-info-btn">
+                  More Info
+              </button>
+            </Link>
+            <div className="movie-more-options-btn" ref={movieListRef}>
+                <button 
+                disabled={popupState.disableBackground}
+                className="btn btn-light options-btn" 
+                onClick={() => setMovieListPopup(prevState => !prevState)}>
+                <Image src={bars} alt="add movie to list"></Image>
+                </button>
+              {movieListPopup ?
+                <div className="default-mini-popup movie-mini-popup">
+                  <button
+                    disabled={popupState.disableBackground} 
+                    onClick={() => dispatchPopup({type: "ADDLIST_POPUP_SHOW"})}>
+                    Add to list
+                  </button>
+                </div>
+              : null}
+            </div>
           </div>
         </div>
         </div>

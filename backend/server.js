@@ -7,13 +7,15 @@ const cors = require('cors');
 const app = express();
 
 const userRoutes = require("./routes/userRoutes");
+const movieActionRoutes = require("./routes/movieActionRoute");
 
 //Middle-ware
 app.use(express.json());
 app.use(cors());
 
 //Routing
-app.use('/api/user/', userRoutes);
+app.use('/api/users/', userRoutes);
+app.use('/api/movieActions/', movieActionRoutes);
 
 //Connect to mongoDB and start the server
 const startServer = async () => {

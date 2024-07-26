@@ -1,9 +1,11 @@
 'use client'
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import {fetchDataTVSeries, fetchDataCreditsTV, fetchDataSimilarTVSeries, fetchDataSeasonsTV} from '@/lib/api';
 import {dataType, castType, settingFormType} from '@/typeings/types';
-import defaultsettings from "@/data/defaultsettings";
 import { usePathname } from 'next/navigation';
+import { useSettingsContext } from "@/hooks/useSettingsContext";
+
+import defaultsettings from "@/data/defaultsettings";
 import Tabs from "./tabs";
 import Similar from "./similiar";
 import TvSeasons from "./tvSeasons";
@@ -11,6 +13,8 @@ import TvSeasons from "./tvSeasons";
 import Link from "next/link";
 import Star from "@/assets/images/star-solid.svg";
 import Image from "next/image";
+import bars from "@/assets/images/icons/bars-solid.svg"
+
 
 export default function TvComp(){
   //Data states, Holds the JSON data fetched from the api
@@ -18,12 +22,7 @@ export default function TvComp(){
   const [castData, setCastData] = useState<castType[]>([]);
   const [similarData, setSimilarData] = useState<dataType[]>([]);
   const [seasons, setSeasons] = useState<dataType[]>([]);
-  let getSettings;
-  useEffect(() => {
-    getSettings = localStorage.getItem('Settings');
-  }, [])
-
-  const [settingsData, setSettingsData] = useState<settingFormType>(getSettings ? JSON.parse(getSettings) : defaultsettings)
+  const settingsData = useSettingsContext()
 
   const pathname = usePathname();
   const slicePath = pathname.split("/")[2];
@@ -74,6 +73,11 @@ export default function TvComp(){
               <Link href={data[0].homepage}>
                 <button className="btn btn-light" id="more-info-btn">More Info</button>
               </Link>
+              <div className="movie-more-options-btn">
+              <button className="btn btn-light">
+                <Image src={bars} alt="add movie to list"></Image>
+              </button>
+            </div>
           </div>
         </div>
         </div>

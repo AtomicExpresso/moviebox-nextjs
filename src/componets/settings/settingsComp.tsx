@@ -1,5 +1,7 @@
 'use client'
 import { useState, useEffect } from "react";
+import { settingFormType } from "@/typeings/types";
+
 import Image from "next/image";
 import gear from '@/assets/images/gear-solid.svg';
 import palette from '@/assets/images/palette-solid.svg';
@@ -7,14 +9,26 @@ import lock from '@/assets/images/lock-solid.svg';
 import wallet from '@/assets/images/wallet-solid.svg';
 import info from '@/assets/images/info-question-solid.svg';
 import QuestionMark from '@/assets/images/circle-question-solid.svg';
-import { settingFormType } from "@/typeings/types";
 import defaultsettings from "@/data/defaultsettings";
 
+
+//Type Script types
+interface ConstructTabType {
+  title: string, 
+  compType: string, 
+  compName: string, 
+  toolTipContent: string
+}
+
 export default function SettingsComp(){
-  const arr = [{name: "General", icon: gear}, {name: "Appearance", icon: palette}, {name: "Security", icon: lock}, {name: "Billing", icon: wallet}, {name: "About", icon: info}];
+  const arr = [
+    {name: "General", icon: gear}, 
+    {name: "Appearance", icon: palette}, 
+    {name: "Security", icon: lock}, 
+    {name: "Billing", icon: wallet}, 
+    {name: "About", icon: info}];
 
   const [curSetting, setcurSetting] = useState("General");
-
   const [formVar, setFormVar] = useState<settingFormType>(defaultsettings);
 
     //Stores current settings in LocalStorage
@@ -39,8 +53,6 @@ export default function SettingsComp(){
     })
   }
 
-  console.log(formVar)
-
   const ActiveStyle = {
     backgroundColor: formVar["dark-mode"] ? '#042633' : '#dc3546',
     borderRight: formVar["dark-mode"] ? 'solid 2px white' : 'solid 2px black',
@@ -52,12 +64,11 @@ export default function SettingsComp(){
     color: formVar["dark-mode"] ? 'white' : 'black'
   }
 
-  function ConstructComponet({title, compType, compName, toolTipContent}: {title: string, compType: string, compName: string, toolTipContent: string}){
-
+  //Builds the items that are within the tab, including the tooltips
+  function ConstructComponet({title, compType, compName, toolTipContent}: ConstructTabType){
     const [showTooltip, setshowTooltip] = useState(false);
 
     return (
-
       <div className="settings-componet">
         <div className="settings-componet-tooltip">
           <Image src={QuestionMark} alt="tooltip" draggable='false' 
@@ -104,38 +115,72 @@ export default function SettingsComp(){
               </div>
             )
           })}
-        </div>
+        </div> 
+        {/* This is for building the content of each tab*/}
         <div className="settings-current">
           <h1>{curSetting}</h1>
           {curSetting === 'General' ?
             <div className="settings-componet-container">
-              <ConstructComponet title="Notifications" compType="checkbox" compName="notification" toolTipContent="Determines if you recieve notifications (Concept)"/>
-              <ConstructComponet title="Adult content" compType="checkbox" compName="adult-content" toolTipContent="This setting allows you to hide or show NSFW content"/>
+              <ConstructComponet 
+                title="Notifications" 
+                compType="checkbox" 
+                compName="notification" 
+                toolTipContent="Determines if you recieve notifications (Concept)"/>
+              <ConstructComponet 
+                title="Adult content" 
+                compType="checkbox" 
+                compName="adult-content" 
+                toolTipContent="This setting allows you to hide or show NSFW content"/>
             </div>
           : null}
           {curSetting === 'Appearance' ?
             <div className="settings-componet-container">
-              <ConstructComponet title="Dark mode" compType="checkbox" compName="dark-mode" toolTipContent="Change theme from dark or light"/>
+              <ConstructComponet 
+                title="Dark mode" 
+                compType="checkbox" 
+                compName="dark-mode" 
+                toolTipContent="Change theme from dark or light"/>
             </div>
           : null}
           {curSetting === 'Security' ?
             <div className="settings-componet-container">
-              <ConstructComponet title="2-FA" compName="2-FA" compType="checkbox" toolTipContent="Two factor authentication for a more secure account (Concept)"/>
-              <ConstructComponet title="Secure reminders" compName="password-res-reminder" compType="checkbox" toolTipContent="Sends you a password reset reminder every 60 days (Concept)"/>
+              <ConstructComponet 
+                title="2-FA" 
+                compName="2-FA" 
+                compType="checkbox" 
+                toolTipContent="Two factor authentication for a more secure account (Concept)"/>
+              <ConstructComponet 
+                title="Secure reminders" 
+                compName="password-res-reminder" 
+                compType="checkbox" 
+                toolTipContent="Sends you a password reset reminder every 60 days (Concept)"/>
             </div>
           : null}
           {curSetting === 'Billing' ?
             <div className="settings-componet-container">
-              <ConstructComponet title="Information" compType="button" compName={''} toolTipContent="Shows billing information, such as address, zip, etc (Concept)"/>
-              <ConstructComponet title="Billing cycle" compType="button" compName={''} toolTipContent="Shows your current billing cycle (Concept)"/>
-              <ConstructComponet title="Subscription" compType="button" compName={''} toolTipContent="Subscription status (Concept)"/>
+              <ConstructComponet 
+                title="Information" 
+                compType="button" 
+                compName={''} 
+                toolTipContent="Shows billing information, such as address, zip, etc (Concept)"/>
+              <ConstructComponet 
+                title="Billing cycle" 
+                compType="button" 
+                compName={''} 
+                toolTipContent="Shows your current billing cycle (Concept)"/>
+              <ConstructComponet 
+                title="Subscription" 
+                compType="button" 
+                compName={''} 
+                toolTipContent="Subscription status (Concept)"/>
             </div>
           : null}
           {curSetting === 'About' ?
             <div className="settings-componet-container">
               <h3>MovieBox</h3>
-              <p>Project developed and designed by <a href="https://pumped.dev">@Pumpedpixel</a> using <a href="https://www.themoviedb.org/">TMDB API</a> for movie data</p>
-              <p>Please note that this is only a concept project, none of the movies here are streamable. Additonally, All data is gathered from third-party sources, i do not take credit for any of the movies, shows, or data related to the films featured on this concept website.</p>
+              <p>Project developed and designed by <a href="https://pumped.dev">@Pumpedpixel</a></p>
+              <p>Credits: <a href="https://www.themoviedb.org/">TMDB API</a> for movie data</p>
+              <p>Please note that this is only a concept project, none of the movies here are streamable. Additonally, All data is gathered from third-party sources, i do not take credit or responsabilty for any of the movies, shows, or data related to the films featured on this concept website.</p>
             </div>
           : null}
         </div>

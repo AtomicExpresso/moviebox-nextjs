@@ -14,9 +14,9 @@ export default function LandingThirdSection(){
             (
               <div className="faq-content">
                 <hr></hr>
-                {info.split('|').map((para) => {
+                {info.split('|').map((para, index) => {
                   return (
-                    <p>{para}</p>
+                    <p key={index}>{para}</p>
                   )
                 })}
               </div>

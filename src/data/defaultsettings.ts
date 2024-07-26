@@ -1,3 +1,4 @@
+//Default user settings
 let defaultSettings = {
   "adult-content": false,
   "2-FA": false,

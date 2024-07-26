@@ -8,42 +8,16 @@ import { useAuthContext } from "@/hooks/useAuthContext";
 import { redirect } from 'next/navigation';
 import '../sass/landingpage.scss';
 import { useEffect, useState } from "react";
-import GuestLoginPopup from "@/componets/landing/popups/guestLoginPopup";
+import GuestLoginPopup from "@/componets/main/popups/guestLoginPopup";
 
 export default function Page(){
   const {state, dispatch} = useAuthContext();
   const [popupState, setPopupState] = useState({
-    signupPopup: false,
-    loginPopup: false,
     guestLoginPopup: false
   })
 
-  const signup = () => {
-    setPopupState(prevState => {
-      const newState = {
-        signupPopup: !prevState.signupPopup,
-        loginPopup: false,
-        guestLoginPopup: false
-      }
-
-      return newState
-    })
-  }
-
-  const login = () => {
-    setPopupState(prevState => {
-      const newState = {
-        signupPopup: false,
-        loginPopup: !prevState.loginPopup,
-        guestLoginPopup: false
-      }
-
-      return newState
-    })
-  }
-
   useEffect(() => {
-    if(popupState.guestLoginPopup || popupState.loginPopup || popupState.signupPopup){
+    if(popupState.guestLoginPopup){
       console.log('ye')
       document.getElementById('root')?.classList.add('disable')
       window.scrollTo(0, 0);
@@ -55,8 +29,6 @@ export default function Page(){
   const guestLogin = () => {
     setPopupState(prevState => {
       const newState = {
-        signupPopup: false,
-        loginPopup: false,
         guestLoginPopup: !prevState.guestLoginPopup
       }
       return newState
@@ -74,15 +46,13 @@ export default function Page(){
           {popupState.guestLoginPopup ?
             <div className="default-popup-container">
               <GuestLoginPopup
-                guestLogin={guestLogin}
+                callback={guestLogin}
               />
             </div>
           : null}
           <div className="landing-page-main-sections">
             <LandingNav/>
             <LandingMain
-              signup={signup}
-              login={login}
               guestLogin={guestLogin}
             />
           </div>

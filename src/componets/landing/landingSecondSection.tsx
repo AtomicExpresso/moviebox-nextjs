@@ -6,7 +6,7 @@ export default function LandingSecondSection(){
     <div className="landing-second-section">
       <div className="landing-second-section-text">
         <h1>Watch Anywhere</h1>
-        <p>Stream unlimites movies and TV showson your 
+        <p>Stream movies and TV shows on your 
         Phone, Laptop, Teblet, and TV.</p>
       </div>
       <div>

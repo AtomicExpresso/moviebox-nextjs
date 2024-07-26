@@ -26,6 +26,8 @@ const AuthReducer = (state: AuthStateType, action: AuthActionType): AuthStateTyp
     case 'LOGIN':
       return {isGuest: false, user: action.payload}
     case 'LOGOUT':
+      localStorage.removeItem('user')
+      
       return {isGuest: false, user: null}
     default:
       return state
@@ -47,7 +49,7 @@ export const AuthContextProvider = ({children}: {children: ReactNode }) => {
   }, [])
 
   console.log('AuthContext state:', state)
-  
+
   return (
     <AuthContext.Provider value={{state, dispatch}}>
       {children}

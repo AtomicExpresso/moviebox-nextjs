@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 export default function LandingNav() {
   return (
     <div className="landing-nav">
@@ -5,7 +7,9 @@ export default function LandingNav() {
         <h1>Movie<span>Box</span></h1>
       </div>
       <div className="landing-nav-btn">
-        <button className="btn btn-danger">Log in</button>
+        <Link href="/login">
+          <button className="btn btn-danger">Log in</button>
+        </Link>
       </div>
     </div>
   )
