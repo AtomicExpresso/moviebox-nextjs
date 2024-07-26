@@ -1,14 +1,15 @@
 <h1 align="center">🍿 MovieBox</h1>
 
-<p align="center">A feature-rich movie and show info platform and web app, inspired by popular movie streaming services like Netflix and Hulu. This project was developed using Next.js, TypeScript, SASS, and Bootstrap. The platform integrates with the TMDB (The Movie Database) API for movie data</p>
+<p align="center">A feature-rich Full-Stack movie and show info platform. This project was developed using Next.js, Node.js, MongoDB, Mongoose, Express.js, TypeScript, SASS, and Bootstrap. The platform integrates with the TMDB (The Movie Database) API for movie data</p>
 
 <p align="center"><a href="https://moviebox-nextjs-qdnyfio8x-atomics-projects-e6f17228.vercel.app/"><img src="https://img.shields.io/badge/Live preview-1DA1F2?style=for-the-badge&logoColor=white"></img></a>
 
 ##
 
-![Screenshot 2024-06-06 111750](https://github.com/AtomicExpresso/moviebox-nextjs/assets/156177896/d5591868-9b9c-4b10-a40b-1d747cc484db)
-
 ## ⚙️ Features
+
+### - Account system with Authentication
+Users can create an account, login or signup as a guest
 
 #### - Movies & Shows page
 Page's displaying a list of movies and shows seperated by different genere's, such as Action, Animation, Documentery, Etc.
@@ -26,7 +27,7 @@ Each movie and show displays various metrics showing, the rating, cast, descript
 For shows, you can view a list of seasons and episodes with information about each episode
 
 #### - Mobile support and responsive design
-The project was built with resposnvie design ensuring flexability accross different devices
+Project also has mobile support
 
 ## Tech-Stack 📝
 - Typescript
@@ -35,6 +36,8 @@ The project was built with resposnvie design ensuring flexability accross differ
 - Bootstrap
 - Sass
 - Node.js
+- Express.js
+- MongoDB with mongoose
 
 ## Quickstart 👍
 If you want to host this project locally, you will need to register your own API key on the <a href="https://www.themoviedb.org/?language=en-US">TMDB api website</a> (It's free at the moment)
@@ -50,16 +53,23 @@ git clone https://github.com/AtomicExpresso/moviebox-nextjs.git
 cd moviebox-nextjs
 Npm install
 ```
-3) Create a .env file in the src folder and put your api key in it
+3) Create a .env file in the src folder
+
+   Put your api key in NEXT_PUBLIC_TMBDB_API and put your mongoDB atlas uri in MONGO_URI
 
 ```
-NEXT_PUBLIC_TMDB_API_KEY = yourkey
+NEXT_PUBLIC_TMDB_API_KEY = your key
+
+MONGO_URI= Your mongo uri
+PORT= 4000
+SECRET= Can be anything you want
 ```
 
 4 ) Setting up dev server:
 
 ```
 Npm run dev
+Npm run server
 ```
 
 Server should now be running at localhost
